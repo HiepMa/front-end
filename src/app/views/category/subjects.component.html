@@ -1,0 +1,189 @@
+<div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> List Subjects
+                <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modalAdd">Add New Subject</button>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>EN03</td>
+                            <td>English 3</td>
+                            <td>
+                                <label class="switch switch-pill switch-success">
+                                    <input type="checkbox" class="switch-input" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
+                                &nbsp;
+                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>M01</td>
+                            <td>Math 1</td>
+                            <td>
+                                <label class="switch switch-pill switch-success">
+                                    <input type="checkbox" class="switch-input" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
+                                &nbsp;
+                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>H01</td>
+                            <td>History 1</td>
+                            <td>
+                                <label class="switch switch-pill switch-success">
+                                    <input type="checkbox" class="switch-input" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
+                                &nbsp;
+                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul class="pagination pull-right">
+                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!--Modal Add-->
+    <!-- The Modal -->
+    <div class="modal" id="modalAdd">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header alert-success">
+                    <h4 class="modal-title">New Subject</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="row form">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="code">Code:</label>
+                                            <input class="form-control" type="text" name="code" id="code" placeholder="Code">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="subname">Name:</label>
+                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Modal Add-->
+    <!-- The Modal -->
+    <div class="modal" id="modalUpdate">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header alert-primary">
+                    <h4 class="modal-title">Update Subject Information</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="row form">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="code">Code:</label>
+                                            <input class="form-control" type="text" name="code" id="code" placeholder="Code">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="subname">Name:</label>
+                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Modal Delete-->
+    <!-- The Modal -->
+    <div class="modal fade" id="modalDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header alert-danger">
+                    <h4 class="modal-title">Warning</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p class="alert alert-danger">Are you sure? Information of this subject will be deleted!!!</p>
+                </div>
+    
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>

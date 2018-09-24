@@ -1,0 +1,136 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Edit Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">User Name</label>
+                                        <input type="text" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Email address</label>
+                                        <input type="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Phone Number</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">First Name</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Last Name</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Gender</label>
+                                        <br>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label" for="radMale">
+                                                <input type="radio" class="form-check-input" id="radMale" name="optradio" value="male" checked>                                                Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label" for="radFeMale">
+                                                <input type="radio" class="form-check-input" id="radFeMale" name="optradio" value="female">Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="dob">DOB</label>
+                                        <input type="date" name="dob" id="dob" max="3000-12-31" min="1000-01-01" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Address</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalPass">Change Password</button> &nbsp; &nbsp;
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="modalPass">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header alert alert-primary">
+                <h4 class="modal-title ">Change Password</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="row form">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="curpass">Current Password:</label>
+                                        <input class="form-control" type="password" name="curpass" id="curpass">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="newpass">New Password:</label>
+                                        <input class="form-control" type="password" name="newpass" id="newpass">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="compass">Comfirm Password:</label>
+                                        <input class="form-control" type="password" name="compass" id="compass">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,347 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-align-justify"></i> List Examinees
+            <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modalAdd">Add New Examinee</button>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Account</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>DOB</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>abcxyz</td>
+                        <td>John</td>
+                        <td>Wicks</td>
+                        <td>11/11/2000</td>
+                        <td>0909090909</td>
+                        <td>abcxyz@gmail.com</td>
+                        <td>
+                            <label class="switch switch-pill switch-success">
+                                <input type="checkbox" class="switch-input" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
+                            &nbsp;
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>abcxyz</td>
+                        <td>judy</td>
+                        <td>army</td>
+                        <td>11/11/2000</td>
+                        <td>0909090909</td>
+                        <td>abcxyz@gmail.com</td>
+                        <td>
+                            <label class="switch switch-pill switch-success">
+                                <input type="checkbox" class="switch-input" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
+                            &nbsp;
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>lust2132</td>
+                        <td>linda</td>
+                        <td>park</td>
+                        <td>11/11/2000</td>
+                        <td>0909090909</td>
+                        <td>abcxyz@gmail.com</td>
+                        <td>
+                            <label class="switch switch-pill switch-success">
+                                <input type="checkbox" class="switch-input" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
+                            &nbsp;
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <ul class="pagination pull-right">
+                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--Modal Add-->
+<!-- The Modal -->
+<div class="modal" id="modalAdd">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header alert-success">
+                <h4 class="modal-title">New Examinee Information</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-horizontal">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username">User Name:</label>
+                                            <input class="form-control" type="text" name="username" id="username" placeholder="User Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username">Password:</label>
+                                            <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstname">First Name:</label>
+                                            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastname">Last Name:</label>
+                                            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dob">DOB</label>
+                                            <input type="date" name="dob" id="dob" max="3000-12-31" min="1000-01-01" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <br>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radMale">
+                                                    <input type="radio" class="form-check-input" id="radMale" name="optradio" value="male" checked>                                                    Male
+                                                </label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radFeMale">
+                                                    <input type="radio" class="form-check-input" id="radFeMale" name="optradio" value="female">Female
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone">Phone:</label>
+                                            <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastname">Email:</label>
+                                            <input class="form-control" type="email" name="email" id="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="phone">Address:</label>
+                                            <input class="form-control" type="text" name="address" id="address" placeholder="Address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="authority">Authority:</label>
+                                            <br>
+                                            <a data-toggle="modal" href="#myModal">Add Authority</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Update-->
+<!-- The Modal -->
+<div class="modal" id="modalUpdate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header alert-primary">
+                <h4 class="modal-title">Update Examinee Information</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-horizontal">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username">User Name:</label>
+                                            <input class="form-control" type="text" name="username" id="username" placeholder="User Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username">Password:</label>
+                                            <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstname">First Name:</label>
+                                            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastname">Last Name:</label>
+                                            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dob">DOB</label>
+                                            <input type="date" name="dob" id="dob" max="3000-12-31" min="1000-01-01" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <br>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radMale">
+                                                    <input type="radio" class="form-check-input" id="radMale" name="optradio" value="male" checked>                                                    Male
+                                                </label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radFeMale">
+                                                    <input type="radio" class="form-check-input" id="radFeMale" name="optradio" value="female">Female
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone">Phone:</label>
+                                            <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastname">Email:</label>
+                                            <input class="form-control" type="email" name="email" id="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="phone">Address:</label>
+                                            <input class="form-control" type="text" name="address" id="address" placeholder="Address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="authority">Authority:</label>
+                                            <br>
+                                            <a data-toggle="modal" href="#myModal">Modify Authority</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Delete-->
+<!-- The Modal -->
+<div class="modal fade" id="modalDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header alert-danger">
+                <h4 class="modal-title">Warning</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p class="alert alert-danger">Are you sure? Information of this account will be deleted!!!</p>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
