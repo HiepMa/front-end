@@ -11,15 +11,18 @@ export class SubjectsComponent implements OnInit {
   constructor(private monhocServices: MonhocService) {
     this.monhocServices.getAll().subscribe((res) => {this.monhocList=res}); 
   }
- 
+  GetAll(){
+    this.monhocServices.getAll().subscribe((res) => {this.monhocList=res}); 
+  }
   Add(subCode,subName)
   {
         var today = new Date();
-        let tmp = new Monhoc(subCode,subName,true,13,today,4,today,'');
+        let tmp = new Monhoc(subCode.value,subName.value,true,13,today,4,today,'');
         console.log(tmp);
         this.monhocServices.add(tmp).subscribe(data=>{
         console.log(data);
-    })
+    });
+    this.GetAll();
   }
 
   ngOnInit() {
