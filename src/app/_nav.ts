@@ -41,6 +41,11 @@ export const navItems = [
         url: '/bank/questions',
         icon: 'cui-bookmark'
       },
+      {
+        name: 'Type_Questions',
+        url: '/bank/type_questions',
+        icon: 'cui-bookmark'
+      }
     ]
   },
   {

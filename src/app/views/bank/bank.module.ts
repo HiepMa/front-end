@@ -5,7 +5,8 @@ import { NgModule } from '@angular/core';
 
 // Components Routing
 import { BankRoutingModule } from './bank-routing.module';
-import {QuestionsComponent} from './questions.component'
+import {QuestionsComponent} from './questions.component';
+import {Type_QuestionsComponent} from './type_questions.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {QuestionsComponent} from './questions.component'
     ],
     declarations: [
       QuestionsComponent,
+      Type_QuestionsComponent
     ]
   })
   export class BankModule { }
