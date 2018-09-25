@@ -7,8 +7,8 @@ import { MonhocService } from '../../services/monhoc.service';
 })
 export class SubjectsComponent implements OnInit {
   monhocList: any;
-  constructor(private todoServices: MonhocService) {
-    this.todoServices.getAll().subscribe((res) => {this.monhocList=res}); 
+  constructor(private monhocServices: MonhocService) {
+    this.monhocServices.getAll().subscribe((res) => {this.monhocList=res}); 
   }
 
   ngOnInit() {
