@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GiaovienService } from './giaovien.service';
+import { MonhocService } from './monhoc.service';
 
-describe('GiaovienService', () => {
+describe('MonhocService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: GiaovienService = TestBed.get(GiaovienService);
+    const service: MonhocService = TestBed.get(MonhocService);
     expect(service).toBeTruthy();
   });
 });
