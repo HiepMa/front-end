@@ -16,8 +16,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let monhoc of monhocList">
-                            <td>{{monhoc.id}}</td>
+                        <tr *ngFor="let monhoc of monhocList; let i = index">
+                            <td>{{i + 1}}</td>
                             <td>{{monhoc.ma}}</td>
                             <td>{{monhoc.ten}}</td>
                             <td>
@@ -67,13 +67,13 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="code">Code:</label>
-                                            <input class="form-control" type="text" name="code" id="code" placeholder="Code">
+                                            <input class="form-control" type="text" name="code" id="code" placeholder="Code" #subCode>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="subname">Name:</label>
-                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name">
+                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name" #subName>
                                         </div>
                                     </div>
                                 </form>
@@ -83,7 +83,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)="Add(subCode,subName)">Save</button>
                 </div>
             </div>
         </div>
