@@ -19,10 +19,17 @@ export class SubjectsComponent implements OnInit {
         var today = new Date();
         let tmp = new Monhoc(subCode.value,subName.value,true,13,today,4,today,'');
         console.log(tmp);
-        this.monhocServices.add(tmp).subscribe(data=>{
-        console.log(data);
-    });
-    this.GetAll();
+        this.monhocServices.add(tmp).subscribe((res) => {this.monhocList =res} );
+  }
+  public id;
+  Value(ma)
+  {
+    this.id = ma;
+  }
+  Delete(){
+    this.monhocServices.delete(this.id).subscribe(id=>{
+      console.log(id);
+    }); 
   }
 
   ngOnInit() {
