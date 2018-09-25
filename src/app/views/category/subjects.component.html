@@ -16,42 +16,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>EN03</td>
-                            <td>English 3</td>
-                            <td>
-                                <label class="switch switch-pill switch-success">
-                                    <input type="checkbox" class="switch-input" checked>
-                                    <span class="switch-slider"></span>
-                                </label>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
-                                &nbsp;
-                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>M01</td>
-                            <td>Math 1</td>
-                            <td>
-                                <label class="switch switch-pill switch-success">
-                                    <input type="checkbox" class="switch-input" checked>
-                                    <span class="switch-slider"></span>
-                                </label>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
-                                &nbsp;
-                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>H01</td>
-                            <td>History 1</td>
+                        <tr *ngFor="let monhoc of monhocList">
+                            <td>{{monhoc.id}}</td>
+                            <td>{{monhoc.ma}}</td>
+                            <td>{{monhoc.ten}}</td>
                             <td>
                                 <label class="switch switch-pill switch-success">
                                     <input type="checkbox" class="switch-input" checked>
