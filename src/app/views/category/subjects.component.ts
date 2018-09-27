@@ -22,14 +22,15 @@ export class SubjectsComponent implements OnInit {
         this.monhocServices.add(tmp).subscribe();
   }
   public id;
-  Value(ma)
+  public ma;
+  public ten;
+  public ht;
+  Value(tmp)
   {
-    this.id = ma;
+    this.id = tmp;
   }
   Delete(){
-    this.monhocServices.delete(this.id).subscribe(id=>{
-      console.log(id);
-    }); 
+    this.monhocServices.delete(this.id).subscribe(id=>{console.log(this.id)})
   }
   Update(subCode1,subName1){
     var today = new Date();
