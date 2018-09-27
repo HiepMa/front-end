@@ -1,13 +1,16 @@
 import { Component, ViewChild  } from '@angular/core';
 import { PartsService } from '../../services/catelogy/parts.service';
+import { MonhocService } from '../../services/catelogy/monhoc.service';
 import {Parts} from '../../models/catelogy/parts.class';
 @Component({
     templateUrl:'parts.component.html'
 })
 export class PartsComponent{
-    partList: any;
-  constructor(private partServices: PartsService) {
+  monhocList : any;
+  partList: any;
+  constructor(private partServices: PartsService, private monhocservices : MonhocService) {
     this.partServices.getAll().subscribe((res) => {this.partList=res}); 
+    this.monhocservices.getAll().subscribe((res)=> {this.monhocList=res});
   }
   public id;
   Value(ma)
