@@ -5,7 +5,7 @@
             <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modalAdd">Add New Teacher</button>
         </div>
         <div class="card-body">
-            <table datatable class="table table-striped row-border hover">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped row-border hover">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -20,14 +20,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>abcxyz</td>
-                        <td>John</td>
-                        <td>Wicks</td>
-                        <td>11/11/2000</td>
-                        <td>0909090909</td>
-                        <td>abcxyz@gmail.com</td>
+                    <tr *ngFor="let giaovien of teacherlist; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{giaovien.ma}}</td>
+                        <td>{{giaovien.ho}}</td>
+                        <td>{{giaovien.ten}}</td>
+                        <td>{{giaovien.DOB}}</td>
+                        <td>{{giaovien.Phone}}</td>
+                        <td>{{giaovien.Email}}</td>
                         <td>
                             <label class="switch switch-pill switch-success">
                                 <input type="checkbox" class="switch-input" checked>
@@ -35,49 +35,9 @@
                             </label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(giaovien.id)"> Remove</button>
                             &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>abcxyz</td>
-                        <td>judy</td>
-                        <td>army</td>
-                        <td>11/11/2000</td>
-                        <td>0909090909</td>
-                        <td>abcxyz@gmail.com</td>
-                        <td>
-                            <label class="switch switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" checked>
-                                <span class="switch-slider"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
-                            &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>lust2132</td>
-                        <td>linda</td>
-                        <td>park</td>
-                        <td>11/11/2000</td>
-                        <td>0909090909</td>
-                        <td>abcxyz@gmail.com</td>
-                        <td>
-                            <label class="switch switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" checked>
-                                <span class="switch-slider"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
-                            &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(giaovien.id)">Update</button>
                         </td>
                     </tr>
                 </tbody>
@@ -106,13 +66,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="username">User Name:</label>
-                                            <input class="form-control" type="text" name="username" id="username" placeholder="User Name">
+                                            <input class="form-control" type="text" name="username" id="username" placeholder="User Name" #teacherName>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="username">Password:</label>
-                                            <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                                            <input class="form-control" type="password" name="password" id="password" placeholder="Password" #teacherPass>
                                         </div>
                                     </div>
                                 </div>
@@ -120,13 +80,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="firstname">First Name:</label>
-                                            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name">
+                                            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name" #teacherFirstName>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Last Name:</label>
-                                            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Last Name">
+                                            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Last Name" #teacherLastName>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +94,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="dob">DOB</label>
-                                            <input type="date" name="dob" id="dob" max="3000-12-31" min="1000-01-01" class="form-control">
+                                            <input type="date" name="dob" id="dob" max="3000-12-31" min="1000-01-01" class="form-control" #teacherDOB>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -158,13 +118,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="phone">Phone:</label>
-                                            <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone">
+                                            <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone" #teacherPhone>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Email:</label>
-                                            <input class="form-control" type="email" name="email" id="email" placeholder="Email">
+                                            <input class="form-control" type="email" name="email" id="email" placeholder="Email" #teacherEmail>
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +132,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="phone">Address:</label>
-                                            <input class="form-control" type="text" name="address" id="address" placeholder="Address">
+                                            <input class="form-control" type="text" name="address" id="address" placeholder="Address" #teacherAddress>
                                         </div>
                                     </div>
                                 </div>
@@ -192,7 +152,7 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="Add(teacherName,teacherPass,teacherFirstName,teacherLastName,teacherDOB,teacherPhone,teacherEmail,teacherAddress)">Save</button>
             </div>
         </div>
     </div>
@@ -218,13 +178,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="username">User Name:</label>
-                                            <input class="form-control" type="text" name="username" id="username" placeholder="User Name" disabled>
+                                            <input class="form-control" type="text" name="username" id="username" placeholder="User Name" #teacherName1>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="username">Password:</label>
-                                            <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                                            <input class="form-control" type="password" name="password" id="password" placeholder="Password" #teacherPass1>
                                         </div>
                                     </div>
                                 </div>
@@ -232,13 +192,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="firstname">First Name:</label>
-                                            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name">
+                                            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name" #teacherFirstName1>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Last Name:</label>
-                                            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Last Name">
+                                            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Last Name" #teacherLastName1>
                                         </div>
                                     </div>
                                 </div>
@@ -246,7 +206,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="dob">DOB</label>
-                                            <input type="date" name="dob" id="dob" max="3000-12-31" min="1000-01-01" class="form-control">
+                                            <input type="date" name="dob" id="dob" max="3000-12-31" min="1000-01-01" class="form-control" #teacherDOB1>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -270,13 +230,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="phone">Phone:</label>
-                                            <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone">
+                                            <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone" #teacherPhone1>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Email:</label>
-                                            <input class="form-control" type="email" name="email" id="email" placeholder="Email">
+                                            <input class="form-control" type="email" name="email" id="email" placeholder="Email" #teacherEmail1>
                                         </div>
                                     </div>
                                 </div>
@@ -284,7 +244,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="phone">Address:</label>
-                                            <input class="form-control" type="text" name="address" id="address" placeholder="Address">
+                                            <input class="form-control" type="text" name="address" id="address" placeholder="Address" #teacherAddress1>
                                         </div>
                                     </div>
                                 </div>
@@ -304,7 +264,7 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (Click)=Update(teacherName1,teacherPass1,teacherFirstName1,teacherLastName1,teacherDOB1,teacherPhone1,teacherEmail1,teacherAddress1)>Save</button>
             </div>
         </div>
     </div>
@@ -329,7 +289,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="Delete()">Yes</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
         </div>

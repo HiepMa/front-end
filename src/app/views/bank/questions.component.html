@@ -5,7 +5,7 @@
             <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modalAdd">Add New Question</button>
         </div>
         <div class="card-body">
-                <table datatable class="table table-striped row-border hover">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped row-border hover">
                 <thead>
                     <tr>
                         <th>#</th>
