@@ -29,7 +29,7 @@
                             <td>
                                 <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(monhoc.id)"> Remove</button>
                                 &nbsp;
-                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(monhoc.id)">Update</button>
                             </td>
                         </tr>
                     </tbody>
@@ -108,13 +108,13 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="code">Code:</label>
-                                            <input class="form-control" type="text" name="code" id="code" placeholder="Code">
+                                            <input class="form-control" type="text" name="code" id="code" placeholder="Code" #subCode1>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="subname">Name:</label>
-                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name">
+                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name" #subName1>
                                         </div>
                                     </div>
                                 </form>
@@ -124,7 +124,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(subCode1,subName1)">Save</button>
                 </div>
             </div>
         </div>

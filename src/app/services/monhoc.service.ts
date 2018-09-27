@@ -27,8 +27,8 @@ export class MonhocService {
       observe: 'body'
     });
   }
-  update(id, data){
-    return this.http.put(this.apiservices.baseUrl+apiName, data, {
+  update(id, data: Monhoc){
+    return this.http.put(this.apiservices.baseUrl+apiName+'/'+id, data, {
       observe: 'body'
     });
   }
