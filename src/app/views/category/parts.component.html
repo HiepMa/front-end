@@ -17,11 +17,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>EN03</td>
-                        <td>English 3</td>
-                        <td>English</td>
+                    <tr *ngFor = "let part of partList; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{part.ma}}</td>
+                        <td>{{part.ten}}</td>
+                        <td>{{part.monHoc.ten}}</td>
                         <td>
                             <label class="switch switch-pill switch-success">
                                 <input type="checkbox" class="switch-input" checked>
@@ -29,43 +29,9 @@
                             </label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)= "Value(part.id)">Remove</button>
                             &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>M01</td>
-                        <td>Math 1</td>
-                        <td>Math</td>
-                        <td>
-                            <label class="switch switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" checked>
-                                <span class="switch-slider"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
-                            &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>H01</td>
-                        <td>History 1</td>
-                        <td>History</td>
-                        <td>
-                            <label class="switch switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" checked>
-                                <span class="switch-slider"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
-                            &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(part.id)">Update</button>
                         </td>
                     </tr>
                 </tbody>
@@ -93,23 +59,23 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="code">Code:</label>
-                                        <input class="form-control" type="text" name="code" id="code" placeholder="Code">
+                                        <input class="form-control" type="text" name="code" id="code" placeholder="Code" #partCode>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="subname">Name:</label>
-                                        <input class="form-control" type="text" name="subname" id="subname" placeholder="Part Name">
+                                        <input class="form-control" type="text" name="subname" id="subname" placeholder="Part Name" #partName>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="type">Subject:</label>
-                                        <select class="form-control" id="type">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
+                                        <select class="form-control" id="type" #partSub>
+                                            <option value=1>1</option>
+                                            <option value=2>2</option>
+                                            <option value=3>3</option>
+                                            <option value=4>4</option>
                                         </select>
                                     </div>
                                 </div>
@@ -120,7 +86,7 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="Add(partCode,partName,partSub)">Save</button>
             </div>
         </div>
     </div>
@@ -145,23 +111,23 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="code">Code:</label>
-                                        <input class="form-control" type="text" name="code" id="code" placeholder="Code">
+                                        <input class="form-control" type="text" name="code" id="code" placeholder="Code" #partCodee>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="subname">Name:</label>
-                                        <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name">
+                                        <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name" #partNamee>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="type">Subject:</label>
-                                        <select class="form-control" id="type">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
+                                        <select class="form-control" id="type" #partSube>
+                                            <option value=1>1</option>
+                                            <option value=2>2</option>
+                                            <option value=3>3</option>
+                                            <option value=4>4</option>
                                         </select>
                                     </div>
                                 </div>
@@ -172,7 +138,7 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(partCodee,partNamee,partSube)">Save</button>
             </div>
         </div>
     </div>
@@ -197,7 +163,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="Delete()">Yes</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
         </div>
