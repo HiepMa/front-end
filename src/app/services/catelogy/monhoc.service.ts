@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { ApiService } from './api.service';
-import { Monhoc } from '../models/monhoc.class';
+import { ApiService } from '../api.service'
+import { Monhoc } from '../../models/catelogy/monhoc.class';
 
 const apiName = 'monhoc';
 

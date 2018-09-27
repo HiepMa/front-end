@@ -16,10 +16,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>LoaiCH11111</td>
-                        <td>chọn True/False</td>
+                    <tr *ngFor = "let type of typeList; let i =index">
+                        <td>{{i + 1}}</td>
+                        <td>{{type.maLoai}}</td>
+                        <td>{{type.tenLoai}}</td>
                         <td>
                             <label class="switch switch-pill switch-success">
                                 <input type="checkbox" class="switch-input" checked>
@@ -27,63 +27,7 @@
                             </label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>LoaiCH11112</td>
-                        <td>chọn 1 đúng</td>
-                        <td>
-                            <label class="switch switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" checked>
-                                <span class="switch-slider"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>LoaiCH11113</td>
-                        <td>chọn nhiều đúng</td>
-                        <td>
-                            <label class="switch switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" checked>
-                                <span class="switch-slider"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>LoaiCH11114</td>
-                        <td>điền khuyết</td>
-                        <td>
-                            <label class="switch switch-pill switch-success">
-                                <input type="checkbox" class="switch-input">
-                                <span class="switch-slider"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>LoaiCH11115</td>
-                        <td>đoạn văn</td>
-                        <td>
-                            <label class="switch switch-pill switch-success">
-                                <input type="checkbox" class="switch-input">
-                                <span class="switch-slider"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(type.id)">Update</button>
                         </td>
                     </tr>
                 </tbody>
@@ -161,14 +105,8 @@
                             <form class="row form">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="code">Code:</label>
-                                        <input class="form-control" type="text" name="code" id="code" placeholder="Code">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
                                         <label for="subname">Name:</label>
-                                        <input class="form-control" type="text" name="subname" id="subname" placeholder=" Type Question Name">
+                                        <input class="form-control" type="text" name="subname" id="subname" placeholder=" Type Question Name" #typeName>
                                     </div>
                                 </div>
                             </form>
@@ -178,7 +116,7 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(typeName)">Save</button>
             </div>
         </div>
     </div>

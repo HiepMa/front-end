@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { ApiService } from './api.service';
-import { Parts } from '../models/parts.class';
+import { ApiService } from '../api.service';
+import { Parts } from '../../models/catelogy/parts.class';
 
 const apiName= 'demuc';
 

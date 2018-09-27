@@ -1,6 +1,6 @@
 import { Component, ViewChild  } from '@angular/core';
-import { PartsService } from '../../services/parts.service';
-import {Parts} from '../../models/parts.class';
+import { PartsService } from '../../services/catelogy/parts.service';
+import {Parts} from '../../models/catelogy/parts.class';
 @Component({
     templateUrl:'parts.component.html'
 })

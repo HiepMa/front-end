@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MonhocService } from '../../services/monhoc.service';
-import { Monhoc } from '../../models/monhoc.class';
+import { MonhocService } from '../../services/catelogy/monhoc.service';
+import { Monhoc } from '../../models/catelogy/monhoc.class';
 
 @Component({
   selector: 'app-subject',
