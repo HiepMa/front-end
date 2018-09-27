@@ -20,6 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
                     <tr *ngFor="let giaovien of teacherlist; let i = index">
                         <td>{{i + 1}}</td>
                         <td>{{giaovien.ma}}</td>
@@ -28,6 +29,16 @@
                         <td>{{giaovien.DOB}}</td>
                         <td>{{giaovien.Phone}}</td>
                         <td>{{giaovien.Email}}</td>
+=======
+                    <tr>
+                        <td>1</td>
+                        <td>abcxyz</td>
+                        <td>John</td>
+                        <td>Wicks</td>
+                        <td>11/11/2000</td>
+                        <td>0909090909</td>
+                        <td>abcxyz@gmail.com</td>
+>>>>>>> 126be87f5a655c85c2a88f987113f4279b3662cf
                         <td>
                             <label class="switch switch-pill switch-success">
                                 <input type="checkbox" class="switch-input" checked>
@@ -35,10 +46,18 @@
                             </label>
                         </td>
                         <td>
+<<<<<<< HEAD
                             <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(giaovien.id)"> Remove</button>
                             &nbsp;
                             <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(giaovien.id)">Update</button>
                         </td>
+=======
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete">Remove</button>
+                            &nbsp;
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate">Update</button>
+                        </td>
+                    </tr> 
+>>>>>>> 126be87f5a655c85c2a88f987113f4279b3662cf
                     </tr>
                 </tbody>
             </table>

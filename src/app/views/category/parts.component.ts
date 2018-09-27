@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import { Component, ViewChild, OnInit, OnDestroy  } from '@angular/core';
+=======
+import { Component, ViewChild  } from '@angular/core';
+import { PartsService } from '../../services/catelogy/parts.service';
+import { MonhocService } from '../../services/catelogy/monhoc.service';
+>>>>>>> 126be87f5a655c85c2a88f987113f4279b3662cf
 import {Parts} from '../../models/catelogy/parts.class';
 import { MyservicesService } from '../../services/myservices.service';
 import { Subject } from 'rxjs';
@@ -8,6 +14,7 @@ const apiName= 'demuc';
 @Component({
     templateUrl:'parts.component.html'
 })
+<<<<<<< HEAD
 export class PartsComponent implements OnInit, OnDestroy{
     partList: any;
     dtOptions: DataTables.Settings = {};
@@ -31,6 +38,15 @@ export class PartsComponent implements OnInit, OnDestroy{
       // Do not forget to unsubscribe the event
       this.dtTrigger.unsubscribe();
     }
+=======
+export class PartsComponent{
+  monhocList : any;
+  partList: any;
+  constructor(private partServices: PartsService, private monhocservices : MonhocService) {
+    this.partServices.getAll().subscribe((res) => {this.partList=res}); 
+    this.monhocservices.getAll().subscribe((res)=> {this.monhocList=res});
+  }
+>>>>>>> 126be87f5a655c85c2a88f987113f4279b3662cf
   public id;
   Value(ma)
   {
