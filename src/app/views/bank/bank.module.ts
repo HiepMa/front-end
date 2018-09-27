@@ -7,13 +7,14 @@ import { NgModule } from '@angular/core';
 import { BankRoutingModule } from './bank-routing.module';
 import {QuestionsComponent} from './questions.component';
 import {Type_QuestionsComponent} from './type_questions.component';
-
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
     imports: [
       CommonModule,
       FormsModule,
       BankRoutingModule,
+      DataTablesModule
     ],
     declarations: [
       QuestionsComponent,

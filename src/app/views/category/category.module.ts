@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
+import { DataTablesModule } from 'angular-datatables';
 // Components Routing
 import { CategoryRoutingModule } from './category-routing.module';
 
@@ -21,6 +22,7 @@ import {PartsComponent} from './parts.component'
     CommonModule,
     FormsModule,
     CategoryRoutingModule,
+    DataTablesModule,
   ],
   declarations: [
     ExamineesComponent,
