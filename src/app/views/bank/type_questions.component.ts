@@ -10,14 +10,22 @@ const apiName= 'loai_ch';
 })
 export class Type_QuestionsComponent implements OnInit, OnDestroy {
     typeList: any;
-    dtOptions: DataTables.Settings = {};
+    dtOptions: any = {};
     dtTrigger: Subject<any> = new Subject();
     constructor(private myservicesService: MyservicesService) {}
     ngOnInit(): void {
       this.myservicesService.getApiName(apiName);
       this.dtOptions = {
         pagingType: 'full_numbers',
-        pageLength: 10
+        pageLength: 10,
+        dom: 'Blfrtip',
+        // Configure the buttons
+        buttons: [
+          'colvis',
+          'copy',
+          'print',
+          'excel'
+        ]
       };
       this.myservicesService.getAll()
       .subscribe(res => {
