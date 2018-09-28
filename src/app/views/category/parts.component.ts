@@ -11,6 +11,7 @@ const apiName= 'demuc';
 })
 export class PartsComponent implements OnInit, OnDestroy{
     partList: any;
+    monhocList: any;
     dtOptions: DataTables.Settings = {};
     dtTrigger: Subject<any> = new Subject();
     constructor(private myservicesService: MyservicesService) {}
@@ -20,6 +21,7 @@ export class PartsComponent implements OnInit, OnDestroy{
         pagingType: 'full_numbers',
         pageLength: 10
       };
+      this.myservicesService.getObject('monhoc').subscribe((res)=> {this.monhocList=res});
       this.myservicesService.getAll()
       .subscribe(res => {
         this.partList = res;

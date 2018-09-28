@@ -11,6 +11,11 @@ export class MyservicesService {
   getApiName(apiName){
     this.apiName = apiName
   }
+  getObject(ob){
+    return this.http.get(this.apiservices.baseUrl+ob, {
+      observe: 'body'
+    });
+  }
   getAll(){
     return this.http.get(this.apiservices.baseUrl+this.apiName, {
       observe: 'body'
