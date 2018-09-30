@@ -15,6 +15,8 @@
                         <th>DOB</th>
                         <th>Phone</th>
                         <th>Email</th>
+                        <th>Address</th>
+                        <th>Gender</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -28,6 +30,8 @@
                         <td>{{giaovien.ngaySinh}}</td>
                         <td>{{giaovien.dienThoai}}</td>
                         <td>{{giaovien.email}}</td>
+                        <td>{{giaovien.diaChi}}</td>
+                        <td><p *ngIf="giaovien.gioiTinh=='Male'">Male</p> <p *ngIf="giaovien.gioiTinh=='FeMale'">FeMale</p></td>
                         <td>
                             <label class="switch switch-pill switch-success">
                                 <input type="checkbox" class="switch-input" [checked]="giaovien.hienThi == true">
@@ -37,7 +41,7 @@
                         <td>
                             <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(giaovien.id)"> Remove</button>
                             &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(giaovien.id)">Update</button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(giaovien.id)"> Update</button>
                         </td>
                     </tr>
                 </tbody>

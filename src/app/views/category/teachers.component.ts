@@ -18,6 +18,32 @@ export class TeachersComponent implements OnInit, OnDestroy{
       this.dtOptions = {
         pagingType: 'full_numbers',
         pageLength: 10,
+        columns: [{
+          title: '#'
+        }, {
+          title: 'Account',
+          visible: false
+        }, {  
+          title:'First Name'
+        }, {  
+          title:'Last Name'
+        }, {  
+          title:'DOB',
+          visible: false
+        }, {  
+          title:'Phone'
+        }, {  
+          title:'Email'
+        }, {   
+          title:'Address',
+          visible: false
+        }, { 
+          title:'Gender'
+        }, {
+          title:'Status'
+        }, {  
+          title:'Action'
+        }],
         dom: 'Blfrtip',
         buttons: [
           'colvis',
@@ -44,7 +70,7 @@ export class TeachersComponent implements OnInit, OnDestroy{
   Add(teacherName,teacherPass,teacherFirstName,teacherLastName,teacherDOB,teacherPhone,teacherEmail,teacherAddress)
   {
     var today = new Date();
-    let tmp = new GiaoVien(teacherName.value,teacherFirstName.value,teacherLastName.value,teacherPass.value,true,teacherEmail.value,teacherPhone.value,teacherAddress.value,today,true,4,today,13,today,'');
+    let tmp = new GiaoVien(teacherName.value,teacherFirstName.value,teacherLastName.value,teacherPass.value,"Male",teacherEmail.value,teacherPhone.value,teacherAddress.value,today,true,4,today,13,today,'');
     console.log(tmp);
     this.myservicesService.add(tmp).subscribe();
   }
@@ -78,7 +104,7 @@ export class TeachersComponent implements OnInit, OnDestroy{
   }
   Update(teacherName1,teacherPass1,teacherFirstName1,teacherLastName1,teacherDOB1,teacherPhone1,teacherEmail1,teacherAddress1){
     var today = new Date();
-    let tmp = new GiaoVien(teacherName1.value,teacherFirstName1.value,teacherLastName1.value,teacherPass1.value,true,teacherEmail1.value,teacherPhone1.value,teacherAddress1.value,today,true,4,today,13,today,'');
+    let tmp = new GiaoVien(teacherName1.value,teacherFirstName1.value,teacherLastName1.value,teacherPass1.value,"Male",teacherEmail1.value,teacherPhone1.value,teacherAddress1.value,today,true,4,today,13,today,'');
     this.myservicesService.update(this.id,tmp).subscribe(id =>{
       console.log(id);
     });
