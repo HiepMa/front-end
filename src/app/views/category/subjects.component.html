@@ -22,7 +22,7 @@
                             <td>{{monhoc.ten}}</td>
                             <td>
                                 <label class="switch switch-pill switch-success">
-                                    <input type="checkbox" class="switch-input" checked>
+                                    <input type="checkbox" class="switch-input" [checked]="monhoc.hienThi == true">
                                     <span class="switch-slider"></span>
                                 </label>
                             </td>
@@ -98,13 +98,13 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="code">Code:</label>
-                                            <input class="form-control" type="text" name="code" id="code" placeholder="Code" #subCode1>
+                                            <input class="form-control" type="text" name="code" id="code" placeholder="Code" #subCode1 value='{{ma}}' disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="subname">Name:</label>
-                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name" #subName1>
+                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name" #subName1 value='{{ten}}'>
                                         </div>
                                     </div>
                                 </form>

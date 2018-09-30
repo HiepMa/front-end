@@ -22,7 +22,7 @@
                         <td>{{type.tenLoai}}</td>
                         <td>
                             <label class="switch switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" checked>
+                                <input type="checkbox" class="switch-input" [checked]="type.hienThi == true">
                                 <span class="switch-slider"></span>
                             </label>
                         </td>
@@ -96,7 +96,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="subname">Name:</label>
-                                        <input class="form-control" type="text" name="subname" id="subname" placeholder=" Type Question Name" #typeName>
+                                        <input class="form-control" type="text" name="subname" id="subname" placeholder=" Type Question Name" #typeName value='{{ten}}'>
                                     </div>
                                 </div>
                             </form>

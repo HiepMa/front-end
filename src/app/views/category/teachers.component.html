@@ -25,12 +25,12 @@
                         <td>{{giaovien.ma}}</td>
                         <td>{{giaovien.ho}}</td>
                         <td>{{giaovien.ten}}</td>
-                        <td>{{giaovien.DOB}}</td>
-                        <td>{{giaovien.Phone}}</td>
-                        <td>{{giaovien.Email}}</td>
+                        <td>{{giaovien.ngaySinh}}</td>
+                        <td>{{giaovien.dienThoai}}</td>
+                        <td>{{giaovien.email}}</td>
                         <td>
                             <label class="switch switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" checked>
+                                <input type="checkbox" class="switch-input" [checked]="giaovien.hienThi == true">
                                 <span class="switch-slider"></span>
                             </label>
                         </td>
@@ -178,13 +178,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="username">User Name:</label>
-                                            <input class="form-control" type="text" name="username" id="username" placeholder="User Name" #teacherName1>
+                                            <input class="form-control" type="text" name="username" id="username1" placeholder="User Name" #teacherName1 value='{{ma}}'>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="username">Password:</label>
-                                            <input class="form-control" type="password" name="password" id="password" placeholder="Password" #teacherPass1>
+                                            <input class="form-control" type="password" name="password" id="password1" placeholder="Password" #teacherPass1 value='{{matKhau}}'>
                                         </div>
                                     </div>
                                 </div>
@@ -192,13 +192,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="firstname">First Name:</label>
-                                            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name" #teacherFirstName1>
+                                            <input class="form-control" type="text" name="firstname" id="firstname1" placeholder="First Name" #teacherFirstName1 value='{{ho}}'>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Last Name:</label>
-                                            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Last Name" #teacherLastName1>
+                                            <input class="form-control" type="text" name="lastname" id="lastname1" placeholder="Last Name" #teacherLastName1 value='{{ten}}'>
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="dob">DOB</label>
-                                            <input type="date" name="dob" id="dob" max="3000-12-31" min="1000-01-01" class="form-control" #teacherDOB1>
+                                            <input type="date" name="dob" id="dob1" max="3000-12-31" min="1000-01-01" class="form-control" #teacherDOB1 value='{{ngaySinh}}'>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -214,13 +214,13 @@
                                             <label>Gender</label>
                                             <br>
                                             <div class="form-check-inline">
-                                                <label class="form-check-label" for="radMale">
-                                                    <input type="radio" class="form-check-input" id="radMale" name="optradio" value="male" checked>                                                    Male
+                                                <label class="form-check-label" for="radMale1">
+                                                    <input type="radio" class="form-check-input" id="radMale1" name="optradio" value="true" [checked]="hienThi == true" >Male
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
-                                                <label class="form-check-label" for="radFeMale">
-                                                    <input type="radio" class="form-check-input" id="radFeMale" name="optradio" value="female">Female
+                                                <label class="form-check-label" for="radFeMale1">
+                                                    <input type="radio" class="form-check-input" id="radFeMale1" name="optradio" value="false" [checked]="hienThi == false">Female
                                                 </label>
                                             </div>
                                         </div>
@@ -230,13 +230,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="phone">Phone:</label>
-                                            <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone" #teacherPhone1>
+                                            <input class="form-control" type="text" name="phone" id="phone1" placeholder="Phone" #teacherPhone1 value='{{dienThoai}}'>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Email:</label>
-                                            <input class="form-control" type="email" name="email" id="email" placeholder="Email" #teacherEmail1>
+                                            <input class="form-control" type="email" name="email" id="email1" placeholder="Email" #teacherEmail1 value='{{email}}'>
                                         </div>
                                     </div>
                                 </div>
@@ -244,7 +244,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="phone">Address:</label>
-                                            <input class="form-control" type="text" name="address" id="address" placeholder="Address" #teacherAddress1>
+                                            <input class="form-control" type="text" name="address" id="address1" placeholder="Address" #teacherAddress1 value='{{diaChi}}'>
                                         </div>
                                     </div>
                                 </div>

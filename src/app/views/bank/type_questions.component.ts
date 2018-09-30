@@ -19,7 +19,6 @@ export class Type_QuestionsComponent implements OnInit, OnDestroy {
         pagingType: 'full_numbers',
         pageLength: 10,
         dom: 'Blfrtip',
-        // Configure the buttons
         buttons: [
           'colvis',
           'copy',
@@ -40,9 +39,11 @@ export class Type_QuestionsComponent implements OnInit, OnDestroy {
       this.dtTrigger.unsubscribe();
     }
     public id;
+    public ten;
     Value(ma)
     {
       this.id = ma;
+      this.ten = this.typeList[this.id].tenLoai;
     }
    
     Update(typeName){

@@ -10,14 +10,21 @@ const apiName = 'monhoc';
 })
 export class SubjectsComponent implements OnInit, OnDestroy {
   monhocList: any = [];
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
   constructor(private myservicesService: MyservicesService) {}
   ngOnInit(): void {
     this.myservicesService.getApiName(apiName);
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10
+      pageLength: 10,
+      dom: 'Blfrtip',
+      buttons: [
+        'colvis',
+        'copy',
+        'print',
+        'excel'
+      ]
     };
     this.myservicesService.getAll()
     .subscribe(res => {
@@ -52,6 +59,9 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   Value(tmp)
   {
     this.id = tmp;
+    this.ma = this.monhocList[this.id].ma;
+    this.ten = this.monhocList[this.id].ten;
+    this.ht = this.monhocList[this.id].hienThi;
   }
   Delete(){
     this.myservicesService.delete(this.id).subscribe(

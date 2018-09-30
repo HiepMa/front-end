@@ -12,14 +12,21 @@ const apiName= 'demuc';
 export class PartsComponent implements OnInit, OnDestroy{
     partList: any;
     monhocList: any;
-    dtOptions: DataTables.Settings = {};
+    dtOptions: any = {};
     dtTrigger: Subject<any> = new Subject();
     constructor(private myservicesService: MyservicesService) {}
     ngOnInit(): void {
       this.myservicesService.getApiName(apiName);
       this.dtOptions = {
         pagingType: 'full_numbers',
-        pageLength: 10
+        pageLength: 10,
+        dom: 'Blfrtip',
+        buttons: [
+          'colvis',
+          'copy',
+          'print',
+          'excel'
+        ]
       };
       this.myservicesService.getObject('monhoc').subscribe((res)=> {this.monhocList=res});
       this.myservicesService.getAll()
@@ -35,9 +42,15 @@ export class PartsComponent implements OnInit, OnDestroy{
       this.dtTrigger.unsubscribe();
     }
   public id;
+  public ma;
+  public ten;
+  public ht;
   Value(ma)
   {
     this.id = ma;
+    this.ma = this.partList[this.id].ma;
+    this.ten = this.partList[this.id].ten;
+    this.ht = this.partList[this.id].hienThi
   }
   Add(partCode,partName,partSub)
   {

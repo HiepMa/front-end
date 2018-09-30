@@ -10,14 +10,21 @@ const apiName = 'giaovien';
 })
 export class TeachersComponent implements OnInit, OnDestroy{
     teacherlist: any;
-    dtOptions: DataTables.Settings = {};
+    dtOptions: any = {};
     dtTrigger: Subject<any> = new Subject();
     constructor(private myservicesService: MyservicesService) {}
     ngOnInit(): void {
       this.myservicesService.getApiName(apiName);
       this.dtOptions = {
         pagingType: 'full_numbers',
-        pageLength: 10
+        pageLength: 10,
+        dom: 'Blfrtip',
+        buttons: [
+          'colvis',
+          'copy',
+          'print',
+          'excel'
+        ]
       };
       this.myservicesService.getAll()
       .subscribe(res => {
@@ -36,24 +43,35 @@ export class TeachersComponent implements OnInit, OnDestroy{
   }
   Add(teacherName,teacherPass,teacherFirstName,teacherLastName,teacherDOB,teacherPhone,teacherEmail,teacherAddress)
   {
-    //   alert(teacherName:any,teacherPass:any,teacherFirstName:any,teacherLastName:any,teacherDOB:any,teacherPhone:any,teacherEmail:any,teacherAddress:any)
-        var today = new Date();
-        let tmp = new GiaoVien(teacherName.value,teacherFirstName.value,teacherLastName.value,teacherPass.value,true,teacherEmail.value,teacherPhone.value,teacherAddress.value,today,true,4,today,13,today,'');
-        console.log(tmp);
-        this.myservicesService.add(tmp).subscribe();
+    var today = new Date();
+    let tmp = new GiaoVien(teacherName.value,teacherFirstName.value,teacherLastName.value,teacherPass.value,true,teacherEmail.value,teacherPhone.value,teacherAddress.value,today,true,4,today,13,today,'');
+    console.log(tmp);
+    this.myservicesService.add(tmp).subscribe();
   }
-    public id;
-    public Account;
-    public FirstName;
-    public LastName;
-    public DOB;
-    public Phone;
-    public Email;
-    public Status;
-    public Action;
+  public id;
+  public ma;
+  public ho;
+  public ten;
+  public matKhau;
+  public gioitinh;
+  public email;
+  public dienThoai;
+  public diaChi;
+  public ngaySinh;
+  public hienThi;
   Value(tmp)
   {
     this.id = tmp;
+    this.ma = this.teacherlist[this.id].ma;
+    this.ho = this.teacherlist[this.id].ho;
+    this.ten = this.teacherlist[this.id].ten;
+    this.matKhau = this.teacherlist[this.id].matKhau;
+    this.gioitinh = this.teacherlist[this.id].gioitinh;
+    this.email = this.teacherlist[this.id].email;
+    this.dienThoai = this.teacherlist[this.id].dienThoai;
+    this.diaChi = this.teacherlist[this.id].diaChi;
+    this.ngaySinh = this.teacherlist[this.id].ngaySinh;
+    this.hienThi = this.teacherlist[this.id].hienThi;  
   }
   Delete(){
     this.myservicesService.delete(this.id).subscribe(id=>{console.log(this.id)})
