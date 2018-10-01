@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { LoginResq } from '../../models/loginrequest.class';
 import { loginResp } from '../../models/loginrespone.class';
 
+
 const apiName = 'auth/token';
 
 @Component({
