@@ -105,14 +105,11 @@
                                         <div class="form-group">
                                             <label>Gender</label>
                                             <br>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label" for="radMale">
-                                                    <input type="radio" class="form-check-input" id="radMale" name="optradio" value="male" checked>                                                    Male
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label" for="radFeMale">
-                                                    <input type="radio" class="form-check-input" id="radFeMale" name="optradio" value="female">Female
+                                            <div class="form-check-inline" *ngFor="let gen of genders">
+                                                <label class="form-check-label" for="rad_{{gen}}">
+                                                    <input type="radio" class="form-check-input" id="rad_{{gen}}" name="optradio" [checked]="gioitinh==gen? 'true' : 'false'" [value]="gen" [(ngModel)]="gender" (click)='radioFun()'>
+                                                        <span *ngIf="gen=='0'"> Male </span>
+                                                        <span *ngIf="gen=='1'"> FeMale </span>
                                                 </label>
                                             </div>
                                         </div>
@@ -218,8 +215,8 @@
                                             <label>Gender</label>
                                             <br>
                                             <div class="form-check-inline" *ngFor="let gen of genders">
-                                                <label class="form-check-label" for="rad_{{gen}}">
-                                                    <input type="radio" class="form-check-input" id="rad_{{gen}}" name="optradio" [checked]="gioitinh==gen? 'true' : 'false'" [value]="gen" [(ngModel)]="gender" (click)='radioFun()'>
+                                                <label class="form-check-label" for="rad1_{{gen}}">
+                                                    <input type="radio" class="form-check-input" id="rad1_{{gen}}" name="optradio" [checked]="gioitinh==gen? 'true' : 'false'" [value]="gen" [(ngModel)]="gender" (click)='radioFun()'>
                                                         <span *ngIf="gen=='0'"> Male </span>
                                                         <span *ngIf="gen=='1'"> FeMale </span>
                                                 </label>

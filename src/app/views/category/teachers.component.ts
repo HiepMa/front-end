@@ -72,7 +72,7 @@ export class TeachersComponent implements OnInit, OnDestroy{
   Add(teacherName,teacherPass,teacherFirstName,teacherLastName,teacherDOB,teacherPhone,teacherEmail,teacherAddress)
   {
     var today = new Date();
-    let tmp = new GiaoVien(teacherName.value,teacherFirstName.value,teacherLastName.value,teacherPass.value,"Male",teacherEmail.value,teacherPhone.value,teacherAddress.value,today,true,4,today,13,today,'');
+    let tmp = new GiaoVien(teacherName.value,teacherFirstName.value,teacherLastName.value,teacherPass.value,this.gender,teacherEmail.value,teacherPhone.value,teacherAddress.value,today,true,4,today,13,today,'');
     console.log(tmp);
     this.myservicesService.add(tmp).subscribe();
   }
@@ -95,6 +95,7 @@ export class TeachersComponent implements OnInit, OnDestroy{
     this.ten = this.teacherlist[index].ten;
     this.matKhau = this.teacherlist[index].matKhau;
     this.gioitinh = this.teacherlist[index].gioiTinh;
+    this.gender = this.gioitinh;
     this.email = this.teacherlist[index].email;
     this.dienThoai = this.teacherlist[index].dienThoai;
     this.diaChi = this.teacherlist[index].diaChi;
@@ -111,12 +112,11 @@ export class TeachersComponent implements OnInit, OnDestroy{
     console.log(this.gender, '-------');
   }
   Update(teacherName1,teacherPass1,teacherFirstName1,teacherLastName1,teacherDOB1,teacherPhone1,teacherEmail1,teacherAddress1){
-    alert(teacherFirstName1.value);
     alert(this.gender);
-    // var today = new Date();
-    // let tmp = new GiaoVien(teacherName1.value,teacherFirstName1.value,teacherLastName1.value,teacherPass1.value,gender.value,teacherEmail1.value,teacherPhone1.value,teacherAddress1.value,today,true,4,today,13,today,'');
-    // this.myservicesService.update(this.id,tmp).subscribe(id =>{
-    //   console.log(id);
-    // });
+    var today = new Date();
+    let tmp = new GiaoVien(teacherName1.value,teacherFirstName1.value,teacherLastName1.value,teacherPass1.value,this.gender,teacherEmail1.value,teacherPhone1.value,teacherAddress1.value,today,true,4,today,13,today,'');
+    this.myservicesService.update(this.id,tmp).subscribe(id =>{
+      console.log(id);
+    });
   }
 }
