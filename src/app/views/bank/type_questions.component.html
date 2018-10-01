@@ -2,7 +2,6 @@
     <div class="card">
         <div class="card-header">
             <i class="fa fa-align-justify"></i> List Type Question
-            <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modalAdd">Add New Type Question</button>
         </div>
         <div class="card-body">
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped row-border hover">
@@ -35,49 +34,7 @@
         </div>
     </div>
 </div>
-
-<!--Modal Add-->
-<!-- The Modal -->
-<div class="modal" id="modalAdd">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header alert-success">
-                <h4 class="modal-title">New Type Question</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form class="row form">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="code">Code:</label>
-                                        <input class="form-control" type="text" name="code" id="code" placeholder="Code">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="subname">Name:</label>
-                                        <input class="form-control" type="text" name="subname" id="subname" placeholder=" Type Question Name">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--Modal Add-->
+<!--Modal Update-->
 <!-- The Modal -->
 <div class="modal" id="modalUpdate">
     <div class="modal-dialog modal-lg">

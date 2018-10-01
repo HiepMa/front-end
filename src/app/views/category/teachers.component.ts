@@ -104,8 +104,9 @@ export class TeachersComponent implements OnInit, OnDestroy{
   }
   Delete(){
     this.myservicesService.delete(this.id).subscribe( data => {
-      this.GetAll();
-      return true;
+      console.log(data);
+      // this.GetAll();
+      // return true;
     });
   }
   radioFun(){
