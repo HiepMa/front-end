@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header">
             <i class="fa fa-align-justify"></i> List Teachers
-            <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modalAdd">Add New Teacher</button>
+            <button class="btn btn-success float-right" data-toggle="modal" data-target="#modalAdd">Add New Teacher</button>
         </div>
         <div class="card-body">
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped row-border hover">
@@ -217,14 +217,11 @@
                                         <div class="form-group">
                                             <label>Gender</label>
                                             <br>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label" for="radMale1">
-                                                    <input type="radio" class="form-check-input" id="radMale1" name="optradio" [checked]="gioitinh=='0'? 'true' : 'false'" value="0">Male
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label" for="radFeMale1">
-                                                    <input type="radio" class="form-check-input" id="radFeMale1" name="optradio" [checked]="gioitinh=='1'? 'true' : 'false'" value="1">Female
+                                            <div class="form-check-inline" *ngFor="let gen of genders">
+                                                <label class="form-check-label" for="rad_{{gen}}">
+                                                    <input type="radio" class="form-check-input" id="rad_{{gen}}" name="optradio" [checked]="gioitinh==gen? 'true' : 'false'" [value]="gen" [(ngModel)]="gender" (click)='radioFun()'>
+                                                        <span *ngIf="gen=='0'"> Male </span>
+                                                        <span *ngIf="gen=='1'"> FeMale </span>
                                                 </label>
                                             </div>
                                         </div>
@@ -268,7 +265,7 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (Click)="Update(teacherName1,teacherPass1,teacherFirstName1,teacherLastName1,teacherDOB1,teacherPhone1,teacherEmail1,teacherAddress1)">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(teacherName1,teacherPass1,teacherFirstName1,teacherLastName1,teacherDOB1,teacherPhone1,teacherEmail1,teacherAddress1)">Save</button>
             </div>
         </div>
     </div>

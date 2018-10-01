@@ -64,6 +64,8 @@ export class TeachersComponent implements OnInit, OnDestroy{
       // Do not forget to unsubscribe the event
       this.dtTrigger.unsubscribe();
     }
+    genders: string[] = ["0","1"];
+    gender: string;
   GetAll(){
     this.myservicesService.getAll().subscribe((res) => {this.teacherlist=res}); 
   }
@@ -105,10 +107,14 @@ export class TeachersComponent implements OnInit, OnDestroy{
       return true;
     });
   }
+  radioFun(){
+    console.log(this.gender, '-------');
+  }
   Update(teacherName1,teacherPass1,teacherFirstName1,teacherLastName1,teacherDOB1,teacherPhone1,teacherEmail1,teacherAddress1){
     alert(teacherFirstName1.value);
+    alert(this.gender);
     // var today = new Date();
-    // let tmp = new GiaoVien(teacherName1.value,teacherFirstName1.value,teacherLastName1.value,teacherPass1.value,gender,teacherEmail1.value,teacherPhone1.value,teacherAddress1.value,today,true,4,today,13,today,'');
+    // let tmp = new GiaoVien(teacherName1.value,teacherFirstName1.value,teacherLastName1.value,teacherPass1.value,gender.value,teacherEmail1.value,teacherPhone1.value,teacherAddress1.value,today,true,4,today,13,today,'');
     // this.myservicesService.update(this.id,tmp).subscribe(id =>{
     //   console.log(id);
     // });
