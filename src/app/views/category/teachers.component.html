@@ -27,11 +27,11 @@
                         <td>{{giaovien.ma}}</td>
                         <td>{{giaovien.ho}}</td>
                         <td>{{giaovien.ten}}</td>
-                        <td>{{giaovien.ngaySinh}}</td>
+                        <td>{{giaovien.ngaySinh|date:'dd/MM/yyyy'}}</td>
                         <td>{{giaovien.dienThoai}}</td>
                         <td>{{giaovien.email}}</td>
                         <td>{{giaovien.diaChi}}</td>
-                        <td><p *ngIf="giaovien.gioiTinh=='Male'">Male</p> <p *ngIf="giaovien.gioiTinh=='FeMale'">FeMale</p></td>
+                        <td><p *ngIf="giaovien.gioiTinh=='0'">Male</p> <p *ngIf="giaovien.gioiTinh=='1'">FeMale</p></td>
                         <td>
                             <label class="switch switch-pill switch-success">
                                 <input type="checkbox" class="switch-input" [checked]="giaovien.hienThi == true">
@@ -39,9 +39,9 @@
                             </label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(giaovien.id)"> Remove</button>
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(giaovien.id,i)"> Remove</button>
                             &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(giaovien.id)"> Update</button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(giaovien.id,i)"> Update</button>
                         </td>
                     </tr>
                 </tbody>
@@ -210,7 +210,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="dob">DOB</label>
-                                            <input type="date" name="dob" id="dob1" max="3000-12-31" min="1000-01-01" class="form-control" #teacherDOB1 value='{{ngaySinh}}'>
+                                            <input type="date" name="dob" id="dob1" max="3000-12-31" min="1000-01-01" class="form-control" #teacherDOB1 [value]="ngaysinh| date:'yyyy-MM-dd'">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -219,12 +219,12 @@
                                             <br>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label" for="radMale1">
-                                                    <input type="radio" class="form-check-input" id="radMale1" name="optradio" value="true" [checked]="hienThi == true" >Male
+                                                    <input type="radio" class="form-check-input" id="radMale1" name="optradio" [checked]="gioitinh=='0'? 'true' : 'false'" value="0">Male
                                                 </label>
                                             </div>
                                             <div class="form-check-inline">
                                                 <label class="form-check-label" for="radFeMale1">
-                                                    <input type="radio" class="form-check-input" id="radFeMale1" name="optradio" value="false" [checked]="hienThi == false">Female
+                                                    <input type="radio" class="form-check-input" id="radFeMale1" name="optradio" [checked]="gioitinh=='1'? 'true' : 'false'" value="1">Female
                                                 </label>
                                             </div>
                                         </div>
@@ -268,7 +268,7 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (Click)=Update(teacherName1,teacherPass1,teacherFirstName1,teacherLastName1,teacherDOB1,teacherPhone1,teacherEmail1,teacherAddress1)>Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (Click)="Update(teacherName1,teacherPass1,teacherFirstName1,teacherLastName1,teacherDOB1,teacherPhone1,teacherEmail1,teacherAddress1)">Save</button>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@ export class GiaoVien{
     ho : string;
     ten: string;
     matKhau : string;
-    gioitinh : string;
+    gioiTinh : string;
     email : string;
     dienThoai : string;
     diaChi : string;
@@ -21,7 +21,7 @@ export class GiaoVien{
         this.ho = ho;
         this.ten= ten;
         this.matKhau = matKhau;
-        this.gioitinh = gioitinh;
+        this.gioiTinh = gioitinh;
         this.email = email;
         this.dienThoai = dienThoai;
         this.diaChi = diaChi;

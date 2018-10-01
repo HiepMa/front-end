@@ -56,12 +56,12 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   public ma;
   public ten;
   public ht;
-  Value(tmp)
+  Value(tmp, index)
   {
     this.id = tmp;
-    this.ma = this.monhocList[this.id].ma;
-    this.ten = this.monhocList[this.id].ten;
-    this.ht = this.monhocList[this.id].hienThi;
+    this.ma = this.monhocList[index].ma;
+    this.ten = this.monhocList[index].ten;
+    this.ht = this.monhocList[index].hienThi;
   }
   Delete(){
     this.myservicesService.delete(this.id).subscribe(

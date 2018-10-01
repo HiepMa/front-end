@@ -29,9 +29,9 @@
                             </label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)= "Value(part.id)">Remove</button>
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)= "Value(part.id,i)">Remove</button>
                             &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(part.id)">Update</button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(part.id,i)">Update</button>
                         </td>
                     </tr>
                 </tbody>

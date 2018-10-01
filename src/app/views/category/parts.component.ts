@@ -45,12 +45,12 @@ export class PartsComponent implements OnInit, OnDestroy{
   public ma;
   public ten;
   public ht;
-  Value(ma)
+  Value(ma,index)
   {
     this.id = ma;
-    this.ma = this.partList[this.id].ma;
-    this.ten = this.partList[this.id].ten;
-    this.ht = this.partList[this.id].hienThi
+    this.ma = this.partList[index].ma;
+    this.ten = this.partList[index].ten;
+    this.ht = this.partList[index].hienThi
   }
   Add(partCode,partName,partSub)
   {

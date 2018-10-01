@@ -40,10 +40,10 @@ export class Type_QuestionsComponent implements OnInit, OnDestroy {
     }
     public id;
     public ten;
-    Value(ma)
+    Value(ma,index)
     {
       this.id = ma;
-      this.ten = this.typeList[this.id].tenLoai;
+      this.ten = this.typeList[index].tenLoai;
     }
    
     Update(typeName){

@@ -75,38 +75,42 @@ export class TeachersComponent implements OnInit, OnDestroy{
     this.myservicesService.add(tmp).subscribe();
   }
   public id;
-  public ma;
-  public ho;
-  public ten;
-  public matKhau;
-  public gioitinh;
-  public email;
-  public dienThoai;
-  public diaChi;
-  public ngaySinh;
-  public hienThi;
-  Value(tmp)
+  public ma: string;
+  public ho: string;
+  public ten: string;
+  public matKhau: string;
+  public gioitinh: string;
+  public email: string;
+  public dienThoai: string;
+  public diaChi: string;
+  public ngaysinh: Date;
+  public hienThi: boolean;
+  Value(tmp,index)
   {
     this.id = tmp;
-    this.ma = this.teacherlist[this.id].ma;
-    this.ho = this.teacherlist[this.id].ho;
-    this.ten = this.teacherlist[this.id].ten;
-    this.matKhau = this.teacherlist[this.id].matKhau;
-    this.gioitinh = this.teacherlist[this.id].gioitinh;
-    this.email = this.teacherlist[this.id].email;
-    this.dienThoai = this.teacherlist[this.id].dienThoai;
-    this.diaChi = this.teacherlist[this.id].diaChi;
-    this.ngaySinh = this.teacherlist[this.id].ngaySinh;
-    this.hienThi = this.teacherlist[this.id].hienThi;  
+    this.ma = this.teacherlist[index].ma;
+    this.ho = this.teacherlist[index].ho;
+    this.ten = this.teacherlist[index].ten;
+    this.matKhau = this.teacherlist[index].matKhau;
+    this.gioitinh = this.teacherlist[index].gioiTinh;
+    this.email = this.teacherlist[index].email;
+    this.dienThoai = this.teacherlist[index].dienThoai;
+    this.diaChi = this.teacherlist[index].diaChi;
+    this.ngaysinh = this.teacherlist[index].ngaySinh;
+    this.hienThi = this.teacherlist[index].hienThi;  
   }
   Delete(){
-    this.myservicesService.delete(this.id).subscribe(id=>{console.log(this.id)})
+    this.myservicesService.delete(this.id).subscribe( data => {
+      this.GetAll();
+      return true;
+    });
   }
   Update(teacherName1,teacherPass1,teacherFirstName1,teacherLastName1,teacherDOB1,teacherPhone1,teacherEmail1,teacherAddress1){
-    var today = new Date();
-    let tmp = new GiaoVien(teacherName1.value,teacherFirstName1.value,teacherLastName1.value,teacherPass1.value,"Male",teacherEmail1.value,teacherPhone1.value,teacherAddress1.value,today,true,4,today,13,today,'');
-    this.myservicesService.update(this.id,tmp).subscribe(id =>{
-      console.log(id);
-    });
+    alert(teacherFirstName1.value);
+    // var today = new Date();
+    // let tmp = new GiaoVien(teacherName1.value,teacherFirstName1.value,teacherLastName1.value,teacherPass1.value,gender,teacherEmail1.value,teacherPhone1.value,teacherAddress1.value,today,true,4,today,13,today,'');
+    // this.myservicesService.update(this.id,tmp).subscribe(id =>{
+    //   console.log(id);
+    // });
   }
 }
