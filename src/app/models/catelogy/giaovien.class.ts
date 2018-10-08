@@ -11,12 +11,13 @@ export class GiaoVien{
     diaChi : string;
     ngaySinh : Date;
     hienThi : boolean;
+    xoa: boolean;
     nguoiTao : number;
     ngayTao : Date;
     nguoiCN : number;
     ngayCN : Date;
     khac_GV :string;
-    constructor(ma : string,ho : string, ten: string, matKhau : string, gioitinh : string, email : string, dienThoai : string, diaChi : string, ngaySinh : Date, hienThi : boolean, nguoiTao : number, ngayTao : Date, nguoiCN : number, ngayCN : Date, khac_GV :string){
+    constructor(ma : string,ho : string, ten: string, matKhau : string, gioitinh : string, email : string, dienThoai : string, diaChi : string, ngaySinh : Date, hienThi : boolean,xoa : boolean, nguoiTao : number, ngayTao : Date, nguoiCN : number, ngayCN : Date, khac_GV :string){
         this.ma = ma
         this.ho = ho;
         this.ten= ten;
@@ -27,6 +28,7 @@ export class GiaoVien{
         this.diaChi = diaChi;
         this.ngaySinh = ngaySinh;
         this.hienThi = hienThi;
+        this.xoa = xoa;
         this.nguoiTao = nguoiTao;
         this.ngayTao = ngayTao;
         this.nguoiCN = nguoiCN;

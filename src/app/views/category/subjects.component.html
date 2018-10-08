@@ -2,10 +2,10 @@
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify"></i> List Subjects
-                <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modalAdd">Add New Subject</button>
+                <button class="btn btn-success float-right" data-toggle="modal" data-target="#modalAdd">Add New Subject</button>
             </div>
             <div class="card-body">
-                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped row-border hover">
+                <table datatable #dataTable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped row-border hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -21,15 +21,15 @@
                             <td>{{monhoc.ma}}</td>
                             <td>{{monhoc.ten}}</td>
                             <td>
-                                <label class="switch switch-pill switch-success">
+                                <label class="switch switch-label switch-pill switch-success">
                                     <input type="checkbox" class="switch-input" [checked]="monhoc.hienThi == true">
-                                    <span class="switch-slider"></span>
+                                    <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
                                 </label>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(monhoc.id,i)"> Remove</button>
+                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(monhoc.id,i)"> <i class="fas fa-trash-alt"></i></button>
                                 &nbsp;
-                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(monhoc.id,i)">Update</button>
+                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(monhoc.id,i)"><i class="fas fa-pencil-alt"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -98,13 +98,13 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="code">Code:</label>
-                                            <input class="form-control" type="text" name="code" id="code" placeholder="Code" #subCode1 value='{{ma}}' disabled>
+                                            <input class="form-control" type="text" name="code" id="code1" placeholder="Code" #subCode1 value='{{ma}}' disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="subname">Name:</label>
-                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name" #subName1 value='{{ten}}'>
+                                            <input class="form-control" type="text" name="subname" id="subname1" placeholder="Subject Name" #subName1 value='{{ten}}'>
                                         </div>
                                     </div>
                                 </form>
@@ -135,8 +135,27 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <p class="alert alert-danger">Are you sure? Information of this subject will be deleted!!!</p>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="row form">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="code">Code:</label>
+                                            <input class="form-control" type="text" name="code" id="code2" placeholder="Code" disabled value='{{ma}}' disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="subname">Name:</label>
+                                            <input class="form-control" type="text" name="subname" id="subname2" placeholder="Subject Name" disabled value='{{ten}}'>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-    
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" (click)="Delete()">Yes</button>

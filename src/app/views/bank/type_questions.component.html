@@ -20,13 +20,13 @@
                         <td>{{type.maLoai}}</td>
                         <td>{{type.tenLoai}}</td>
                         <td>
-                            <label class="switch switch-pill switch-success">
+                            <label class="switch switch-label switch-pill switch-success">
                                 <input type="checkbox" class="switch-input" [checked]="type.hienThi == true">
-                                <span class="switch-slider"></span>
+                                <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
                             </label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(type.id,i)">Update</button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(type.id,i)"><i class="fas fa-pencil-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -64,32 +64,6 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(typeName)">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--Modal Delete-->
-<!-- The Modal -->
-<div class="modal fade" id="modalDelete">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header alert-danger">
-                <h4 class="modal-title">Warning</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <p class="alert alert-danger">Are you sure? Information of this Type Question will be deleted!!!</p>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

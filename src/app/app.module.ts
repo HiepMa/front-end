@@ -40,12 +40,20 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { ApiService } from './services/api.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './auth.guard';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     AppAsideModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppBreadcrumbModule.forRoot(),
     AppFooterModule,
     AppHeaderModule,
@@ -54,7 +62,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    LoadingBarHttpClientModule,
   ],
   declarations: [
     AppComponent,
@@ -64,7 +73,12 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     LoginComponent,
     RegisterComponent
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    AuthService,
+    CookieService,
+    AuthGuard
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

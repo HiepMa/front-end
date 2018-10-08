@@ -3,12 +3,15 @@ import { Type_Question } from '../../models/type_question.class';
 import { MyservicesService } from '../../services/myservices.service';
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
+import { DataTableDirective } from 'angular-datatables';
 
 const apiName= 'loai_ch';
 @Component({
     templateUrl:'type_questions.component.html'
 })
 export class Type_QuestionsComponent implements OnInit, OnDestroy {
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
     typeList: any;
     dtOptions: any = {};
     dtTrigger: Subject<any> = new Subject();
@@ -38,10 +41,12 @@ export class Type_QuestionsComponent implements OnInit, OnDestroy {
       // Do not forget to unsubscribe the event
       this.dtTrigger.unsubscribe();
     }
+    public Index;
     public id;
     public ten;
     Value(ma,index)
     {
+      this.Index = index;
       this.id = ma;
       this.ten = this.typeList[index].tenLoai;
     }
@@ -49,7 +54,11 @@ export class Type_QuestionsComponent implements OnInit, OnDestroy {
     Update(typeName){
       let tmp = new Type_Question('',typeName.value,true,'');
       this.myservicesService.update(this.id,tmp).subscribe(id=>{
-        console.log(tmp);
+        this.typeList.splice(this.Index,1,tmp);
+        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          dtInstance.destroy();
+          this.dtTrigger.next();
+        });
       });
     }
 }
