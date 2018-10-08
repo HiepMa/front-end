@@ -27,9 +27,9 @@
                                 </label>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(monhoc.id,i)"> <i class="fas fa-trash-alt"></i></button>
+                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(i)"> <i class="fas fa-trash-alt"></i></button>
                                 &nbsp;
-                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(monhoc.id,i)"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(i)"><i class="fas fa-pencil-alt"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -73,7 +73,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" (click)="Add(subCode,subName);" >Save</button>
+                    <button type="button" class="btn btn-success" (click)="Add(subCode,subName)" data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(subCode1,subName1)">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(subCode1,subName1)" data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>

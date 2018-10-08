@@ -63,15 +63,11 @@ export class PartsComponent implements OnInit, OnDestroy{
   Add(partCode,partName,partSub)
   {
         var today = new Date();
-        let tmp = new Parts(partSub.value,partCode.value,partName.value,true,13,today,4,today,'');
+        let tmp = new Parts(this.id,partSub.value,partCode.value,partName.value,true,false,13,today,4,today,'');
         console.log(tmp);
         this.myservicesService.add(tmp).subscribe(data => {
           this.partList.push(data);
           console.log(this.partList);
-          this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-            dtInstance.destroy();
-            this.dtTrigger.next();
-          });
         });
   }
   Delete(){
@@ -79,21 +75,13 @@ export class PartsComponent implements OnInit, OnDestroy{
       {
         this.partList.splice(this.Index,1,);
         console.log(this.partList);
-        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-          dtInstance.destroy();
-          this.dtTrigger.next();
-        });
       });
   }
   Update(partCodee,partNamee,partSube){
     var today = new Date();
-    let tmp = new Parts(partSube.value,partCodee.value,partNamee.value,true,13,today,4,today,'');
+    let tmp = new Parts(this.id,partSube.value,partCodee.value,partNamee.value,true,false,13,today,4,today,'');
     this.myservicesService.update(this.id,tmp).subscribe(id =>{
       this.partList.splice(this.Index,1,tmp);
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
-      });
     });
   }
 }

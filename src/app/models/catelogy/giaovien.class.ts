@@ -17,7 +17,8 @@ export class GiaoVien{
     nguoiCN : number;
     ngayCN : Date;
     khac_GV :string;
-    constructor(ma : string,ho : string, ten: string, matKhau : string, gioitinh : string, email : string, dienThoai : string, diaChi : string, ngaySinh : Date, hienThi : boolean,xoa : boolean, nguoiTao : number, ngayTao : Date, nguoiCN : number, ngayCN : Date, khac_GV :string){
+    constructor(id:number,ma : string,ho : string, ten: string, matKhau : string, gioitinh : string, email : string, dienThoai : string, diaChi : string, ngaySinh : Date, hienThi : boolean,xoa : boolean, nguoiTao : number, ngayTao : Date, nguoiCN : number, ngayCN : Date, khac_GV :string){
+        this.id = id;
         this.ma = ma
         this.ho = ho;
         this.ten= ten;

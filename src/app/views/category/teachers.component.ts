@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, OnDestroy  } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy, ViewChildren  } from '@angular/core';
 import { GiaoVien } from '../../models/catelogy/giaovien.class';
 import { MyservicesService } from '../../services/myservices.service';
 import { Subject } from 'rxjs';
@@ -82,15 +82,11 @@ export class TeachersComponent implements OnInit, OnDestroy{
   {
     alert(teacherDOB.value)
     var today = new Date();
-    let tmp = new GiaoVien(teacherName.value,teacherFirstName.value,teacherLastName.value,teacherPass.value,"1",teacherEmail.value,teacherPhone.value,teacherAddress.value,teacherDOB.value,true,false,4,today,13,today,'');
+    let tmp = new GiaoVien(this.id,teacherName.value,teacherFirstName.value,teacherLastName.value,teacherPass.value,this.gender,teacherEmail.value,teacherPhone.value,teacherAddress.value,teacherDOB.value,true,false,4,today,13,today,'');
     console.log(tmp);
     this.myservicesService.add(tmp).subscribe(data => {
       this.teacherlist.push(data);
       console.log(this.teacherlist);
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
-      });
     });
   }
   public Index;
@@ -106,11 +102,12 @@ export class TeachersComponent implements OnInit, OnDestroy{
   public ngaysinh: Date;
   public hienThi: boolean;
   public xoa;
-  ht: boolean;
+  hthi: boolean;
   Value(tmp,index)
   {
     this.Index = index;
     this.id = tmp;
+    console.log(this.id);
     this.ma = this.teacherlist[index].ma;
     this.ho = this.teacherlist[index].ho;
     this.ten = this.teacherlist[index].ten;
@@ -124,18 +121,15 @@ export class TeachersComponent implements OnInit, OnDestroy{
     this.ngaysinh = this.teacherlist[index].ngaySinh;
     this.hienThi = this.teacherlist[index].hienThi;  
   }
-  Changed(tmp,index){
-    alert(tmp);
-    this.Value(tmp,index);
+  // @ViewChildren('hthi') item;
+  Changed(indexid,index, event){
+    this.Value(indexid,index);
+    this.hthi = event.target.checked;
+    console.log(this.hthi);
     var today = new Date();
-    alert(this.ht); 
-    let temp = new GiaoVien(this.ma,this.ho,this.ten,this.matKhau,this.gender,this.email,this.dienThoai,this.diaChi,this.ngaysinh,this.ht,false,4,today,13,today,'');
-    this.myservicesService.update(this.id,tmp).subscribe(id =>{
-      this.teacherlist.splice(this.Index,1,tmp);
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
-      });
+    let temp = new GiaoVien(this.id,this.ma,this.ho,this.ten,this.matKhau,this.gender,this.email,this.dienThoai,this.diaChi,this.ngaysinh,this.hthi,false,4,today,13,today,'');
+    this.myservicesService.update(indexid,temp).subscribe(id =>{
+      this.teacherlist.splice(index,1,temp);
     });
   }
   Delete(){
@@ -143,24 +137,16 @@ export class TeachersComponent implements OnInit, OnDestroy{
     {
       this.teacherlist.splice(this.Index,1,);
       console.log(this.teacherlist);
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
-      });
     });
   }
-  // radioFun(){
-  //   console.log(this.gender, '-------');
-  // }
+  radioFun(){
+    console.log(this.gender, '-------');
+  }
   Update(teacherName1,teacherPass1,teacherFirstName1,teacherLastName1,teacherDOB1,teacherPhone1,teacherEmail1,teacherAddress1){
     var today = new Date();
-    let tmp = new GiaoVien(teacherName1.value,teacherFirstName1.value,teacherLastName1.value,teacherPass1.value,this.gender,teacherEmail1.value,teacherPhone1.value,teacherAddress1.value,teacherDOB1.value,true,false,4,today,13,today,'');
+    let tmp = new GiaoVien(this.id,teacherName1.value,teacherFirstName1.value,teacherLastName1.value,teacherPass1.value,this.gender,teacherEmail1.value,teacherPhone1.value,teacherAddress1.value,teacherDOB1.value,this.hthi,false,4,today,13,today,'');
     this.myservicesService.update(this.id,tmp).subscribe(id =>{
       this.teacherlist.splice(this.Index,1,tmp);
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
-      });
     });
   }
 }

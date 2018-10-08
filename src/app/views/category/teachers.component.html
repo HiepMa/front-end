@@ -32,14 +32,14 @@
                         <td><p *ngIf="giaovien.gioiTinh=='0'">Male</p> <p *ngIf="giaovien.gioiTinh=='1'">FeMale</p></td>
                         <td>
                             <label class="switch switch-label switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" [checked]="giaovien.hienThi == true" #ht (change)="Changed(giaovien.id,i)">
+                                <input type="checkbox" class="switch-input" [checked]="giaovien.hienThi == true" #hthi (change)="Changed(giaovien.id,i, $event)">
                                 <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
                             </label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(giaovien.id,i)"> <i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" name="delete-{{i}}" (click)="Value(giaovien.id,i)"> <i class="fas fa-trash-alt"></i></button>
                             &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(giaovien.id,i)"> <i class="fas fa-pencil-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" name="update-{{i}}" (click)="Value(giaovien.id,i)"> <i class="fas fa-pencil-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>

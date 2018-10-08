@@ -52,13 +52,9 @@ export class Type_QuestionsComponent implements OnInit, OnDestroy {
     }
    
     Update(typeName){
-      let tmp = new Type_Question('',typeName.value,true,'');
+      let tmp = new Type_Question(this.id,'',typeName.value,true,'');
       this.myservicesService.update(this.id,tmp).subscribe(id=>{
         this.typeList.splice(this.Index,1,tmp);
-        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-          dtInstance.destroy();
-          this.dtTrigger.next();
-        });
       });
     }
 }

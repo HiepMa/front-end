@@ -51,16 +51,10 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   Add(subCode,subName)
   {
         var today = new Date();
-        let tmp = new Monhoc(subCode.value,subName.value,true,13,today,4,today,'');
+        let tmp = new Monhoc(this.id,subCode.value,subName.value,true,false,13,today,4,today,'');
         this.myservicesService.add(tmp).subscribe(data => {
           this.monhocList.push(data);
           console.log(this.monhocList);
-          this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-            // Destroy the table first
-            dtInstance.destroy();
-            // Call the dtTrigger to rerender again
-            this.dtTrigger.next();
-          });
         });
         
   }
@@ -69,35 +63,29 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   public ma;
   public ten;
   public ht;
-  Value(tmp, index)
+  Value(index)
   {
     this.Index = index;
-    this.id = tmp;
+    this.id = this.monhocList[index].id;
+    console.log(this.id);
+    console.log(this.monhocList);
     this.ma = this.monhocList[index].ma;
     this.ten = this.monhocList[index].ten;
     this.ht = this.monhocList[index].hienThi;
   }
   Delete(){
-    // alert(this.id);
-    this.myservicesService.delete(this.id).subscribe(id=>
+    this.myservicesService.delete(this.id).subscribe(data=>
     {
       this.monhocList.splice(this.Index,1,);
       console.log(this.monhocList);
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
-      });
     });
   }
   Update(subCode1,subName1){
     var today = new Date();
-    let tmp = new Monhoc(subCode1.value,subName1.value,true,13,today,4,today,'');
-    this.myservicesService.update(this.id,tmp).subscribe(id =>{
+    let tmp = new Monhoc(this.id,subCode1.value,subName1.value,true,false,13,today,4,today,'');
+    this.myservicesService.update(this.id,tmp).subscribe(data =>{
       this.monhocList.splice(this.Index,1,tmp);
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
-      });
+      console.log(this.id);
     });
   }
 }
