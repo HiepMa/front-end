@@ -43,17 +43,30 @@ export class Type_QuestionsComponent implements OnInit, OnDestroy {
     }
     public Index;
     public id;
+    public ma;
     public ten;
-    Value(ma,index)
+    hthi: boolean;
+    Value(indexid,index)
     {
       this.Index = index;
-      this.id = ma;
+      this.id = this.typeList[index].id;
+      this.ma = this.typeList[index].ma;
       this.ten = this.typeList[index].tenLoai;
     }
    
+    Changed(indexid, index, event){
+      this.Value(indexid,index);
+      this.hthi = event.target.checked;
+      console.log(this.hthi);
+      var today = new Date();
+      let temp = new Type_Question(this.id,this.ma,this.ten,this.hthi,'');
+      this.myservicesService.update(this.id,temp).subscribe(id =>{
+        this.typeList.splice(index,1,temp);
+      });
+    }
     Update(typeName){
-      let tmp = new Type_Question(this.id,'',typeName.value,true,'');
-      this.myservicesService.update(this.id,tmp).subscribe(id=>{
+      let tmp = new Type_Question(this.id,'',typeName.value,this.hthi,'');
+      this.myservicesService.update(this.id,tmp).subscribe(data=>{
         this.typeList.splice(this.Index,1,tmp);
       });
     }

@@ -21,7 +21,7 @@
                         <td>{{type.tenLoai}}</td>
                         <td>
                             <label class="switch switch-label switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" [checked]="type.hienThi == true">
+                                <input type="checkbox" class="switch-input" [checked]="type.hienThi == true" #hthi (change)="Changed(part.id,i, $event)">
                                 <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
                             </label>
                         </td>

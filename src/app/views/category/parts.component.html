@@ -24,7 +24,7 @@
                         <td>{{part.monHoc.ten}}</td>
                         <td>
                             <label class="switch switch-label switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" [checked]="part.hienThi == true">
+                                <input type="checkbox" class="switch-input" [checked]="part.hienThi == true" #hthi (change)="Changed(part.id,i, $event)">
                                 <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
                             </label>
                         </td>
@@ -121,7 +121,7 @@
                                     <div class="form-group">
                                         <label for="type">Subject:</label>
                                         <select class="form-control" id="type" #partSube>
-                                            <option *ngFor="let monHoc of monhocList" value={{monHoc.id}}>{{monHoc.ten}}</option>
+                                            <option *ngFor="let monHoc of monhocList" value={{monHoc.id}} [selected]="monHoc.id==id_mh" >{{monHoc.ten}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -173,7 +173,7 @@
                                     <div class="form-group">
                                         <label for="type">Subject:</label>
                                         <select class="form-control" id="type" disabled>
-                                            <option *ngFor="let monHoc of monhocList" value={{monHoc.id}}>{{monHoc.ten}}</option>
+                                            <option *ngFor="let monHoc of monhocList" value={{monHoc.id}} [selected]="monHoc.id==id_mh" >{{monHoc.ten}}</option>
                                         </select>
                                     </div>
                                 </div>

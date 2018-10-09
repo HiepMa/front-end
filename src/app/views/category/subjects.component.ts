@@ -63,6 +63,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   public ma;
   public ten;
   public ht;
+  hthi: boolean;
   Value(index)
   {
     this.Index = index;
@@ -73,6 +74,16 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     this.ten = this.monhocList[index].ten;
     this.ht = this.monhocList[index].hienThi;
   }
+  Changed(index, event){
+    this.Value(index);
+    this.hthi = event.target.checked;
+    console.log(this.hthi);
+    var today = new Date();
+    let temp = new Monhoc(this.id,this.ma,this.ten,this.hthi,false,4,today,13,today,'');
+    this.myservicesService.update(this.id,temp).subscribe(id =>{
+      this.monhocList.splice(index,1,temp);
+    });
+  }
   Delete(){
     this.myservicesService.delete(this.id).subscribe(data=>
     {
@@ -82,7 +93,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   }
   Update(subCode1,subName1){
     var today = new Date();
-    let tmp = new Monhoc(this.id,subCode1.value,subName1.value,true,false,13,today,4,today,'');
+    let tmp = new Monhoc(this.id,subCode1.value,subName1.value,this.hthi,false,13,today,4,today,'');
     this.myservicesService.update(this.id,tmp).subscribe(data =>{
       this.monhocList.splice(this.Index,1,tmp);
       console.log(this.id);

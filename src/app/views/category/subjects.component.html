@@ -22,7 +22,7 @@
                             <td>{{monhoc.ten}}</td>
                             <td>
                                 <label class="switch switch-label switch-pill switch-success">
-                                    <input type="checkbox" class="switch-input" [checked]="monhoc.hienThi == true">
+                                    <input type="checkbox" class="switch-input" [checked]="monhoc.hienThi == true" #hthi (change)="Changed(i, $event)">
                                     <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
                                 </label>
                             </td>

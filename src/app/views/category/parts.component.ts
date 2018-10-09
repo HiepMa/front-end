@@ -49,8 +49,8 @@ export class PartsComponent implements OnInit, OnDestroy{
   public ma;
   public ten;
   public ht;
-  // partSube:string;
-  // nrSelect:string;
+  public id_mh;
+  hthi: boolean;
   Value(ma,index)
   {
     this.Index = index;
@@ -58,7 +58,18 @@ export class PartsComponent implements OnInit, OnDestroy{
     this.ma = this.partList[index].ma;
     this.ten = this.partList[index].ten;
     this.ht = this.partList[index].hienThi;
+    this.id_mh = this.partList[index].iD_MonHoc;
     // this.partSube = this.partList[index].iD_MonHoc;
+  }
+  Changed(indexid, index, event){
+    this.Value(indexid,index);
+    this.hthi = event.target.checked;
+    console.log(this.hthi);
+    var today = new Date();
+    let temp = new Parts(this.id,this.id_mh,this.ma,this.ten,this.hthi,false,4,today,13,today,'');
+    this.myservicesService.update(this.id,temp).subscribe(id =>{
+      this.monhocList.splice(index,1,temp);
+    });
   }
   Add(partCode,partName,partSub)
   {
@@ -71,7 +82,7 @@ export class PartsComponent implements OnInit, OnDestroy{
         });
   }
   Delete(){
-    this.myservicesService.delete(this.id).subscribe(id=>
+    this.myservicesService.delete(this.id).subscribe(data=>
       {
         this.partList.splice(this.Index,1,);
         console.log(this.partList);
@@ -79,8 +90,8 @@ export class PartsComponent implements OnInit, OnDestroy{
   }
   Update(partCodee,partNamee,partSube){
     var today = new Date();
-    let tmp = new Parts(this.id,partSube.value,partCodee.value,partNamee.value,true,false,13,today,4,today,'');
-    this.myservicesService.update(this.id,tmp).subscribe(id =>{
+    let tmp = new Parts(this.id,partSube.value,partCodee.value,partNamee.value,this.hthi,false,13,today,4,today,'');
+    this.myservicesService.update(this.id,tmp).subscribe(data =>{
       this.partList.splice(this.Index,1,tmp);
     });
   }
