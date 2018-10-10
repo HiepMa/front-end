@@ -10,8 +10,10 @@ const apiName = 'monhoc';
   selector: 'app-subject',
   templateUrl: './subjects.component.html'
 })
+
+
 export class SubjectsComponent implements OnInit, OnDestroy {
-  errormass1 : any ="";
+  errorms : any ="";
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   monhocList: any = [];
@@ -60,7 +62,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
         },
         res => {
           console.log(res.error.text);
-          this.errormass1 = res.error.text;
+          this.errorms = res.error.text;
         });
         
   }
