@@ -58,6 +58,7 @@
                                         <div class="form-group">
                                             <label for="code">Code:</label>
                                             <input class="form-control" type="text" name="code" id="code" placeholder="Code" #subCode>
+                                            <p>{{errormass1}}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -73,7 +74,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" (click)="Add(subCode,subName)" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-success" (click)="Add(subCode,subName)">Save</button>
                 </div>
             </div>
         </div>

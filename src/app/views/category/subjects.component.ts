@@ -4,12 +4,14 @@ import { MyservicesService } from '../../services/myservices.service';
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { DataTableDirective } from 'angular-datatables';
+
 const apiName = 'monhoc';
 @Component({
   selector: 'app-subject',
   templateUrl: './subjects.component.html'
 })
 export class SubjectsComponent implements OnInit, OnDestroy {
+  errormass1 : any ="";
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   monhocList: any = [];
@@ -55,6 +57,10 @@ export class SubjectsComponent implements OnInit, OnDestroy {
         this.myservicesService.add(tmp).subscribe(data => {
           this.monhocList.push(data);
           console.log(this.monhocList);
+        },
+        res => {
+          console.log(res.error.text);
+          this.errormass1 = res.error.text;
         });
         
   }
