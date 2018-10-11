@@ -32,6 +32,11 @@ export class MyservicesService {
       observe: 'body'
     });
   }
+  addObj (ob,data:any){
+    return this.http.post(this.apiservices.baseUrl+ob,data,{
+      observe :'body'
+    })
+  }
   update(id, data: any){
     return this.http.put(this.apiservices.baseUrl+this.apiName+'/'+id, data, {
       observe: 'body'

@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -55,10 +58,13 @@
                             <div class="col-md-12">
                                 <form class="row form">
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="form-group"> 
                                             <label for="code">Code:</label>
                                             <input class="form-control" type="text" id="code" name="code" placeholder="Code" #subCode>
-                                            <p class="text-danger">{{errorms}}</p>
+                                            <button class="btn btn-success" (click)="Check(subCode)">
+                                                <i class="fa fa-check-square-o" style="font-size:20px;color:blue"></i>  Check Ma
+                                            </button>
+                                            <p class="text-danger" style="font-size:20px">{{errorms}}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -74,7 +80,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" (click)="Add(subCode,subName)">Save</button>
+                    <button type="button" class="btn btn-success" (click)="Add(subCode,subName)" data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>

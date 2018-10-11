@@ -1,11 +1,17 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Monhoc } from '../../models/catelogy/monhoc.class';
-import { MyservicesService } from '../../services/myservices.service';
+import { MyservicesService} from '../../services/myservices.service';
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { DataTableDirective } from 'angular-datatables';
+import { CheckResquest}  from '../../models/CheckResquest.class';
 
 const apiName = 'monhoc';
+export interface Data{
+  thongbao : string,
+    flag : string
+}
+
 @Component({
   selector: 'app-subject',
   templateUrl: './subjects.component.html'
@@ -13,11 +19,14 @@ const apiName = 'monhoc';
 
 
 export class SubjectsComponent implements OnInit, OnDestroy {
+  CheckResq : CheckResquest;
   errorms : any ="";
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   monhocList: any = [];
   dtOptions: any = {};
+  data : any;
+  flag : any ="0";
   dtTrigger: Subject<any> = new Subject();
   constructor(private myservicesService: MyservicesService) {}
   ngOnInit(): void {
@@ -52,19 +61,37 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       this.dtTrigger.next();
     }); 
   }
+  Check(subCode){
+    this.CheckResq = new CheckResquest(subCode.value);
+    this.myservicesService.addObj('monhoc/checkuser',this.CheckResq).subscribe(data =>{
+      this.data = data;
+      this.errorms = this.data.thongbao;
+      this.flag = this.data.flag;
+      console.log (this.flag+"0");
+    });
+  }
   Add(subCode,subName)
   {
-        var today = new Date();
-        let tmp = new Monhoc(this.id,subCode.value,subName.value,true,false,13,today,4,today,'');
-        this.myservicesService.add(tmp).subscribe(data => {
-          this.monhocList.push(data);
-          console.log(this.monhocList);
-        },
+    this.Check(subCode);
+    console.log(this.flag+"1");
+    setTimeout(
+      function(){
+        console.log(this.flag + "2");
+        if(this.flag == "1") {
+          var today = new Date();
+          let tmp = new Monhoc(this.id,subCode.value,subName.value,true,false,13,today,4,today,'');
+          this.myservicesService.add(tmp).subscribe(data => {
+            this.monhocList.push(data);
+            console.log(this.monhocList);
+          },
         res => {
-          console.log(res.error.text);
-          this.errorms = res.error.text;
-        });
-        
+            console.log(res.error.text);
+            this.errorms = res.error.text;
+          });
+        }
+        this.flag = "0";
+        console.log(this.flag + "3");
+      },1000);
   }
   public Index;
   public id;
@@ -108,3 +135,4 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     });
   }
 }
+
