@@ -30,9 +30,9 @@
                                 </label>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(i)"> <i class="fas fa-trash-alt"></i></button>
+                                <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)="Value(i)" name="delete-{{i}}"> <i class="fas fa-trash-alt"></i></button>
                                 &nbsp;
-                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(i)"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(i)" name="update-{{i}}"><i class="fas fa-pencil-alt"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -43,6 +43,8 @@
     
     <!--Modal Add-->
     <!-- The Modal -->
+    <ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
+    <form [formGroup]="form">
     <div class="modal" id="modalAdd">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -60,18 +62,20 @@
                                     <div class="col-md-12">
                                         <div class="form-group"> 
                                             <label for="code">Code:</label>
-                                            <input class="form-control" type="text" id="code" name="code" placeholder="Code" #subCode>
-                                            <button class="btn btn-success" (click)="Check(subCode)">
+                                            <input class="form-control" type="text" id="code" name="code" placeholder="Code" [(ngModel)]="newsub.code" [formControl]="form.controls['code']">
+                                            <button class="btn btn-success" (click)="Check()">
                                                 <i class="fa fa-check-square-o" style="font-size:20px;color:blue"></i>  Check Ma
                                             </button>
-                                            <p class="text-danger" style="font-size:20px">{{errorms}}</p>
+                                            <p *ngIf="form.controls['code'].hasError('required') && form.controls['code'].touched" class="text-danger" >Code is required</p>
+                                            <p *ngIf="checkSubCode==true" class="text-danger">{{errorms}}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="subname">Name:</label>
-                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name" #subName>
+                                            <input class="form-control" type="text" name="subname" id="subname" placeholder="Subject Name" [(ngModel)]="newsub.name" [formControl]="form.controls['name']">
                                         </div>
+                                        <p *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched" class="text-danger" >Name is required</p>
                                     </div>
                                 </form>
                             </div>
@@ -80,14 +84,17 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" (click)="Add(subCode,subName)" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-success" (click)="Add()" [disabled]="!form.valid" data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
     </div>
+    </form>
     
     <!--Modal Add-->
     <!-- The Modal -->
+    <ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
+    <form [formGroup]="form1">
     <div class="modal" id="modalUpdate">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -105,14 +112,16 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="code">Code:</label>
-                                            <input class="form-control" type="text" name="code" id="code1" placeholder="Code" #subCode1 value='{{ma}}' disabled>
+                                            <input class="form-control" type="text" name="code" id="code1" placeholder="Code" value='{{ma}}' disabled #subcode>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="subname">Name:</label>
-                                            <input class="form-control" type="text" name="subname" id="subname1" placeholder="Subject Name" #subName1 value='{{ten}}'>
+                                            <input class="form-control" type="text" name="subname" id="subname1" placeholder="Subject Name" value='{{ten}}' [(ngModel)]="updatesub.name" [formControl]="form1.controls['name']">
                                         </div>
+                                        <p *ngIf="form1.controls['name'].hasError('required') && form1.controls['name'].touched" class="text-danger" >Name is required</p>
+                                        
                                     </div>
                                 </form>
                             </div>
@@ -121,11 +130,12 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(subCode1,subName1)" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(subcode)" [disabled]="!form1.valid" data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
     </div>
+</form>
     
     <!--Modal Delete-->
     <!-- The Modal -->

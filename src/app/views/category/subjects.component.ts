@@ -5,11 +5,12 @@ import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { DataTableDirective } from 'angular-datatables';
 import { CheckResquest}  from '../../models/CheckResquest.class';
+import {FormGroup, Validators,FormBuilder}from '@angular/forms'
 
 const apiName = 'monhoc';
-export interface Data{
-  thongbao : string,
-    flag : string
+export interface newsubject{
+  code: string;
+  name: string;
 }
 
 @Component({
@@ -28,8 +29,20 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   data : any;
   flag : any ="0";
   dtTrigger: Subject<any> = new Subject();
-  constructor(private myservicesService: MyservicesService) {}
+  public form: FormGroup;
+  public form1: FormGroup;
+  newsub: newsubject = {} as newsubject;
+  updatesub: newsubject = {} as newsubject;
+  constructor(private fb: FormBuilder, private myservicesService: MyservicesService) {}
   ngOnInit(): void {
+    this.form = this.fb.group({
+      code: [this.newsub.code, Validators.compose([Validators.required])],
+      name: [this.newsub.name, Validators.compose([Validators.required])]
+    });
+    this.form1 = this.fb.group({
+      code: [this.updatesub.code],
+      name: [this.updatesub.name, Validators.compose([Validators.required])]
+    });
     this.myservicesService.getApiName(apiName);
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -61,37 +74,38 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       this.dtTrigger.next();
     }); 
   }
-  Check(subCode){
-    this.CheckResq = new CheckResquest(subCode.value);
-    this.myservicesService.addObj('monhoc/checkuser',this.CheckResq).subscribe(data =>{
-      this.data = data;
-      this.errorms = this.data.thongbao;
-      this.flag = this.data.flag;
-      console.log (this.flag+"0");
-    });
+  checkSubCode = false;
+  Check(){
+    for(let i of this.monhocList){
+      // console.log(i.ma)
+      if(this.newsub.code == i.ma){ 
+        this.checkSubCode = true;
+        this.errorms = "Code already use"; 
+        break;
+      }
+      else {this.checkSubCode=false;}
+    }
   }
-  Add(subCode,subName)
+  Add(subName)
   {
-    this.Check(subCode);
-    console.log(this.flag+"1");
-    setTimeout(
-      function(){
-        console.log(this.flag + "2");
-        if(this.flag == "1") {
-          var today = new Date();
-          let tmp = new Monhoc(this.id,subCode.value,subName.value,true,false,13,today,4,today,'');
-          this.myservicesService.add(tmp).subscribe(data => {
-            this.monhocList.push(data);
-            console.log(this.monhocList);
-          },
-        res => {
-            console.log(res.error.text);
-            this.errorms = res.error.text;
-          });
-        }
-        this.flag = "0";
-        console.log(this.flag + "3");
-      },1000);
+    this.Check();
+    console.log(this.newsub.code + " "+ this.newsub.name);
+    if(this.checkSubCode==false){
+      var today = new Date();
+      let tmp = new Monhoc(this.id,this.newsub.code,this.newsub.name,true,false,13,today,4,today,'');
+      this.myservicesService.add(tmp).subscribe(data => {
+        this.monhocList.push(data);
+        console.log(this.monhocList);
+      },
+      res => {
+        console.log(res.error.text);
+        this.errorms = res.error.text;
+      });
+      this.checkSubCode = false;
+    }
+    else{
+      this.errorms = "Code already use";
+    }
   }
   public Index;
   public id;
@@ -126,9 +140,9 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       console.log(this.monhocList);
     });
   }
-  Update(subCode1,subName1){
+  Update(subcode){
     var today = new Date();
-    let tmp = new Monhoc(this.id,subCode1.value,subName1.value,this.hthi,false,13,today,4,today,'');
+    let tmp = new Monhoc(this.id,subcode.value,this.updatesub.name,this.ht,false,13,today,4,today,'');
     this.myservicesService.update(this.id,tmp).subscribe(data =>{
       this.monhocList.splice(this.Index,1,tmp);
       console.log(this.id);

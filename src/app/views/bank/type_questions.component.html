@@ -21,12 +21,12 @@
                         <td>{{type.tenLoai}}</td>
                         <td>
                             <label class="switch switch-label switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" [checked]="type.hienThi == true" #hthi (change)="Changed(part.id,i, $event)">
+                                <input type="checkbox" class="switch-input" [checked]="type.hienThi == true" #hthi (change)="Changed(i, $event)">
                                 <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
                             </label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(type.id,i)"><i class="fas fa-pencil-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(i)"><i class="fas fa-pencil-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -36,6 +36,8 @@
 </div>
 <!--Modal Update-->
 <!-- The Modal -->
+<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
+<form [formGroup]="form">
 <div class="modal" id="modalUpdate">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -53,8 +55,9 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="subname">Name:</label>
-                                        <input class="form-control" type="text" name="subname" id="subname" placeholder=" Type Question Name" #typeName value='{{ten}}'>
+                                        <input class="form-control" type="text" name="subname" id="subname" placeholder=" Type Question Name" value='{{ten}}' [(ngModel)]="upt.name" [formControl]="form.controls['name']">
                                     </div>
+                                    <p *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched" class="text-danger" >Name is required</p>
                                 </div>
                             </form>
                         </div>
@@ -63,8 +66,9 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(typeName)">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update()" [disabled]="!form.valid" >Save</button>
             </div>
         </div>
     </div>
 </div>
+</form>

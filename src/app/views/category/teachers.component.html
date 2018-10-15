@@ -32,14 +32,14 @@
                         <td><p *ngIf="giaovien.gioiTinh=='0'">Male</p> <p *ngIf="giaovien.gioiTinh=='1'">FeMale</p></td>
                         <td>
                             <label class="switch switch-label switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" [checked]="giaovien.hienThi == true" #hthi (change)="Changed(giaovien.id,i, $event)">
+                                <input type="checkbox" class="switch-input" [checked]="giaovien.hienThi == true" #hthi (change)="Changed(i, $event)">
                                 <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
                             </label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" name="delete-{{i}}" (click)="Value(giaovien.id,i)"> <i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" name="delete-{{i}}" (click)="Value(i)"> <i class="fas fa-trash-alt"></i></button>
                             &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" name="update-{{i}}" (click)="Value(giaovien.id,i)"> <i class="fas fa-pencil-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" name="update-{{i}}" (click)="Value(i)"> <i class="fas fa-pencil-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -50,6 +50,8 @@
 
 <!--Modal Add-->
 <!-- The Modal -->
+<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
+<form [formGroup]="form">
 <div class="modal" id="modalAdd">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -68,36 +70,42 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="username">User Name:</label>
-                                            <input class="form-control" type="text" name="username" id="username" placeholder="User Name" #teacherName>
+                                            <input class="form-control" type="text" name="username" id="username" placeholder="User Name"  [(ngModel)]="newteacher.code"  [formControl]="form.controls['code']">
                                         </div>
+                                        <p *ngIf="form.controls['code'].hasError('required') && form.controls['code'].touched" class="text-danger" >Code is required</p>
+                                        <p *ngIf="checkTeacherCode==true" class="text-danger">{{errorms}}</p>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="username">Password:</label>
-                                            <input class="form-control" type="password" name="password" id="password" placeholder="Password" #teacherPass>
+                                            <input class="form-control" type="password" name="password" id="password" placeholder="Password" [(ngModel)]="newteacher.matKhau"  [formControl]="form.controls['matKhau']">
                                         </div>
+                                        <p *ngIf="form.controls['matKhau'].hasError('required') && form.controls['matKhau'].touched" class="text-danger" >Password is required</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="firstname">First Name:</label>
-                                            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name" #teacherFirstName>
+                                            <input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name" [(ngModel)]="newteacher.ho"  [formControl]="form.controls['ho']">
                                         </div>
+                                        <p *ngIf="form.controls['ho'].hasError('required') && form.controls['ho'].touched" class="text-danger" >First Name is required</p>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Last Name:</label>
-                                            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Last Name" #teacherLastName>
+                                            <input class="form-control" type="text" name="lastname" id="lastname" placeholder="Last Name" [(ngModel)]="newteacher.ten"  [formControl]="form.controls['ten']">
                                         </div>
+                                        <p *ngIf="form.controls['ten'].hasError('required') && form.controls['ten'].touched" class="text-danger" >Last Name is required</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="dob">DOB</label>
-                                            <input type="date" name="dob" id="dob" max="3000-12-31" min="1000-01-01" class="form-control" #teacherDOB>
+                                            <input type="date" name="dob" id="dob" max="3000-12-31" min="1000-01-01" class="form-control" [(ngModel)]="newteacher.ngaySinh" [formControl]="form.controls['ngaySinh']">
                                         </div>
+                                        <p *ngIf="form.controls['ngaySinh'].hasError('required') && form.controls['ngaySinh'].touched" class="text-danger" >Date of birth is required</p>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -105,11 +113,12 @@
                                             <br>
                                             <div class="form-check-inline" *ngFor="let gen of genders">
                                                 <label class="form-check-label" for="rad_{{gen}}">
-                                                    <input type="radio" class="form-check-input" id="rad_{{gen}}" name="optradio" [checked]="gioitinh==gen? 'true' : 'false'" [value]="gen" [(ngModel)]="gender" (click)='radioFun()'>
+                                                    <input type="radio" class="form-check-input" id="rad_{{gen}}" name="optradio" [value]="gen" [(ngModel)]="newteacher.gioiTinh"  [formControl]="form.controls['gioiTinh']">
                                                         <span *ngIf="gen=='0'"> Male </span>
                                                         <span *ngIf="gen=='1'"> FeMale </span>
                                                 </label>
                                             </div>
+                                            <p *ngIf="form.controls['gioiTinh'].hasError('required') && form.controls['gioiTinh'].touched" class="text-danger" >Gender is required</p>
                                         </div>
                                     </div>
                                 </div>
@@ -117,22 +126,25 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="phone">Phone:</label>
-                                            <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone" #teacherPhone>
+                                            <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone" [(ngModel)]="newteacher.dienThoai"  [formControl]="form.controls['dienThoai']">
                                         </div>
+                                        <p *ngIf="form.controls['dienThoai'].hasError('required') && form.controls['dienThoai'].touched" class="text-danger" >Phone is required</p>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="lastname">Email:</label>
-                                            <input class="form-control" type="email" name="email" id="email" placeholder="Email" #teacherEmail>
+                                            <input class="form-control" type="email" name="email" id="email" placeholder="Email" [(ngModel)]="newteacher.email"  [formControl]="form.controls['email']">
                                         </div>
+                                        <p *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="text-danger" >Email is required</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="phone">Address:</label>
-                                            <input class="form-control" type="text" name="address" id="address" placeholder="Address" #teacherAddress>
+                                            <input class="form-control" type="text" name="address" id="address" placeholder="Address" [(ngModel)]="newteacher.diaChi"  [formControl]="form.controls['diaChi']">
                                         </div>
+                                        <p *ngIf="form.controls['diaChi'].hasError('required') && form.controls['diaChi'].touched" class="text-danger" >Address is required</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -151,14 +163,17 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="Add(teacherName,teacherPass,teacherFirstName,teacherLastName,teacherDOB,teacherPhone,teacherEmail,teacherAddress)">Save</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" [disabled]="!form.valid" (click)="Add()">Save</button>
             </div>
         </div>
     </div>
 </div>
+</form>
 
 <!--Modal Update-->
 <!-- The Modal -->
+<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
+<form [formGroup]="form1">
 <div class="modal" id="modalUpdate">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -265,6 +280,7 @@
         </div>
     </div>
 </div>
+</form>
 
 <!--Modal Delete-->
 <!-- The Modal -->

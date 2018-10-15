@@ -1,6 +1,5 @@
 // Angular
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { DataTablesModule } from 'angular-datatables';
@@ -14,6 +13,8 @@ import {ProfileComponent} from './profile.component'
 import {SubjectsComponent} from './subjects.component'
 import {PartsComponent} from './parts.component'
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 
 
@@ -23,6 +24,8 @@ import {PartsComponent} from './parts.component'
     FormsModule,
     CategoryRoutingModule,
     DataTablesModule,
+    ReactiveFormsModule,
+    LoadingBarHttpClientModule,
   ],
   declarations: [
     ExamineesComponent,

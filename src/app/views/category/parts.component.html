@@ -42,6 +42,8 @@
 
 <!--Modal Add-->
 <!-- The Modal -->
+<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
+<form [formGroup]="form">
 <div class="modal" id="modalAdd">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -59,14 +61,17 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="code">Code:</label>
-                                        <input class="form-control" type="text" name="code" id="code" placeholder="Code" #partCode>
+                                        <input class="form-control" type="text" name="code" id="code" placeholder="Code" [(ngModel)]="newp.code" [formControl]="form.controls['code']">
                                     </div>
+                                    <p *ngIf="form.controls['code'].hasError('required') && form.controls['code'].touched" class="text-danger" >Code is required</p>
+                                    <p *ngIf="checkPartCode==true" class="text-danger">{{errorms}}</p>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="subname">Name:</label>
-                                        <input class="form-control" type="text" name="subname" id="subname" placeholder="Part Name" #partName>
+                                        <input class="form-control" type="text" name="subname" id="subname" placeholder="Part Name" [(ngModel)]="newp.name" [formControl]="form.controls['name']">
                                     </div>
+                                    <p *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched" class="text-danger" >Name is required</p>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -83,14 +88,16 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="Add(partCode,partName,partSub)">Save</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="Add(partSub)" [disabled]="!form.valid" >Save</button>
             </div>
         </div>
     </div>
 </div>
-
+    </form>
 <!--Modal Add-->
 <!-- The Modal -->
+<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
+<form [formGroup]="form1">
 <div class="modal" id="modalUpdate">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -114,8 +121,9 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="subname">Name:</label>
-                                        <input class="form-control" type="text" name="subname" id="subname1" placeholder="Subject Name" #partNamee value='{{ten}}'>
+                                        <input class="form-control" type="text" name="subname" id="subname1" placeholder="Subject Name" value='{{ten}}' [(ngModel)]="updatep.name" [formControl]="form1.controls['name']">
                                     </div>
+                                    <p *ngIf="form1.controls['name'].hasError('required') && form1.controls['name'].touched" class="text-danger" >Name is required</p>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -132,12 +140,12 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(partCodee,partNamee,partSube)">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(partCodee,partSube)" [disabled]="!form1.valid" >Save</button>
             </div>
         </div>
     </div>
 </div>
-
+</form>
 <!--Modal Delete-->
 <!-- The Modal -->
 <div class="modal fade" id="modalDelete">

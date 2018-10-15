@@ -4,8 +4,12 @@ import { MyservicesService } from '../../services/myservices.service';
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { DataTableDirective } from 'angular-datatables';
+import {FormGroup, Validators,FormBuilder}from '@angular/forms'
 
 const apiName= 'loai_ch';
+export interface uptype{
+  name: string;
+}
 @Component({
     templateUrl:'type_questions.component.html'
 })
@@ -15,8 +19,13 @@ export class Type_QuestionsComponent implements OnInit, OnDestroy {
     typeList: any;
     dtOptions: any = {};
     dtTrigger: Subject<any> = new Subject();
-    constructor(private myservicesService: MyservicesService) {}
+    public form: FormGroup;
+    upt: uptype = {} as uptype;
+    constructor(private fb: FormBuilder, private myservicesService: MyservicesService) {}
     ngOnInit(): void {
+      this.form = this.fb.group({
+        name: [this.upt.name, Validators.compose([Validators.required])]
+      });
       this.myservicesService.getApiName(apiName);
       this.dtOptions = {
         pagingType: 'full_numbers',
@@ -45,17 +54,19 @@ export class Type_QuestionsComponent implements OnInit, OnDestroy {
     public id;
     public ma;
     public ten;
+    public hienthi;
     hthi: boolean;
-    Value(indexid,index)
+    Value(index)
     {
       this.Index = index;
       this.id = this.typeList[index].id;
-      this.ma = this.typeList[index].ma;
+      this.ma = this.typeList[index].maLoai;
       this.ten = this.typeList[index].tenLoai;
+      this.hienthi = this.typeList[index].hienThi;
     }
    
-    Changed(indexid, index, event){
-      this.Value(indexid,index);
+    Changed(index, event){
+      this.Value(index);
       this.hthi = event.target.checked;
       console.log(this.hthi);
       var today = new Date();
@@ -64,8 +75,8 @@ export class Type_QuestionsComponent implements OnInit, OnDestroy {
         this.typeList.splice(index,1,temp);
       });
     }
-    Update(typeName){
-      let tmp = new Type_Question(this.id,'',typeName.value,this.hthi,'');
+    Update(){
+      let tmp = new Type_Question(this.id,this.ma,this.upt.name,this.hienthi,'');
       this.myservicesService.update(this.id,tmp).subscribe(data=>{
         this.typeList.splice(this.Index,1,tmp);
       });
