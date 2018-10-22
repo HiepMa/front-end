@@ -11,6 +11,7 @@ const apiName= 'demuc';
 export interface newpart{
   code: string;
   name: string;
+  partsub: any;
 }
 @Component({
     templateUrl:'parts.component.html'
@@ -30,11 +31,14 @@ export class PartsComponent implements OnInit, OnDestroy{
     ngOnInit(): void {
       this.form = this.fb.group({
         code: [this.newp.code, Validators.compose([Validators.required])],
-        name: [this.newp.name, Validators.compose([Validators.required])]
+        name: [this.newp.name, Validators.compose([Validators.required])],
+        partsub: [this.newp.partsub],
+
       });
       this.form1 = this.fb.group({
         code: [this.updatep.code],
-        name: [this.updatep.name, Validators.compose([Validators.required])]
+        name: [this.updatep.name, Validators.compose([Validators.minLength(1)])],
+        partsub: [this.updatep.partsub],
       });
       this.myservicesService.getApiName(apiName);
       this.dtOptions = {
@@ -67,25 +71,30 @@ export class PartsComponent implements OnInit, OnDestroy{
   public ten;
   public ht;
   public id_mh;
+  public tenmh;
   hthi: boolean;
-  Value(ma,index)
+  Value(index)
   {
     this.Index = index;
-    this.id = ma;
+    this.id = this.partList[index].id;
     this.ma = this.partList[index].ma;
     this.ten = this.partList[index].ten;
-    this.ht = this.partList[index].hienThi;
+    this.ht = this.partList[index].hienthipart;
     this.id_mh = this.partList[index].iD_MonHoc;
+    this.tenmh = this.partList[index].monHoc.ten;
+    // console.log(this.id)
     // this.partSube = this.partList[index].iD_MonHoc;
   }
-  Changed(indexid, index, event){
-    this.Value(indexid,index);
+  Changed(index, event){
+    this.Value(index);
     this.hthi = event.target.checked;
-    console.log(this.hthi);
+    // console.log(this.hthi);
+    // this.ht = this.hthi;
     var today = new Date();
     let temp = new Parts(this.id,this.id_mh,this.ma,this.ten,this.hthi,false,4,today,13,today,'');
     this.myservicesService.update(this.id,temp).subscribe(id =>{
-      this.monhocList.splice(index,1,temp);
+      temp.monHoc = this.monhocList.find(x => x.id == this.id_mh);
+      this.partList.splice(index,1,temp);
     });
   }
   errorms;
@@ -101,16 +110,19 @@ export class PartsComponent implements OnInit, OnDestroy{
       else {this.checkPartCode=false;}
     }
   }
-  Add(partSub)
+  // AddpartSub:any;
+  Add()
   {
+    console.log(this.newp.partsub)
     this.Check();
     console.log(this.newp.code + " "+ this.newp.name);
     if(this.checkPartCode==false){
         var today = new Date();
-        let tmp = new Parts(this.id,partSub.value,this.newp.code,this.newp.name,true,false,13,today,4,today,'');
+        let tmp = new Parts(this.id,this.newp.partsub,this.newp.code,this.newp.name,true,false,13,today,4,today,'');
         console.log(tmp);
         this.myservicesService.add(tmp).subscribe(data => {
-          this.partList.push(data);
+          tmp.monHoc = this.monhocList.find(x => x.id == this.newp.partsub);
+          this.partList.push(tmp);
           console.log(this.partList);
         },
         res => {
@@ -127,10 +139,14 @@ export class PartsComponent implements OnInit, OnDestroy{
         console.log(this.partList);
       });
   }
-  Update(partCodee,partSube){
+  Update(partCodee){
+    this.updatep.name = this.ten;
+    // console.log(this.updatep.partsub)
+    // console.log(partCodee.value + " "+ this.updatep.name);
     var today = new Date();
-    let tmp = new Parts(this.id,partSube.value,partCodee.value,this.updatep.name,this.ht,false,13,today,4,today,'');
+    let tmp = new Parts(this.id,this.updatep.partsub,partCodee.value,this.updatep.name,this.hthi,false,13,today,4,today,'');
     this.myservicesService.update(this.id,tmp).subscribe(data =>{
+      tmp.monHoc = this.monhocList.find(x => x.id == this.updatep.partsub);
       this.partList.splice(this.Index,1,tmp);
     });
   }

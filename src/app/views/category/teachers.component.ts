@@ -129,12 +129,13 @@ export class TeachersComponent implements OnInit, OnDestroy{
       else {this.checkTeacherCode=false;}
     }
   }
-  Add(dob)
+  Add()
   {
     this.Check();
     if(this.checkTeacherCode==false){
       var today = new Date();
-      let tmp = new GiaoVien(this.id,this.newteacher.code,this.newteacher.ho,this.newteacher.ten,this.newteacher.matKhau,this.newteacher.gioiTinh,this.newteacher.email,this.newteacher.dienThoai,this.newteacher.diaChi,dob.value,true,false,4,today,13,today,'');
+      console.log(this.newteacher.ngaySinh)
+      let tmp = new GiaoVien(this.id,this.newteacher.code,this.newteacher.ho,this.newteacher.ten,this.newteacher.matKhau,this.newteacher.gioiTinh,this.newteacher.email,this.newteacher.dienThoai,this.newteacher.diaChi,this.newteacher.ngaySinh,true,false,4,today,13,today,'');
       console.log(tmp);
       this.myservicesService.add(tmp).subscribe(data => {
         this.teacherlist.push(data);
@@ -165,7 +166,7 @@ export class TeachersComponent implements OnInit, OnDestroy{
   {
     this.Index = index;
     this.id = this.teacherlist[index].id;
-    console.log(this.id);
+    // console.log(this.id);
     this.ma = this.teacherlist[index].ma;
     this.ho = this.teacherlist[index].ho;
     this.ten = this.teacherlist[index].ten;

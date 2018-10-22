@@ -30,7 +30,7 @@
                       <button type="submit" [disabled]="!form.valid" class="btn btn-primary px-4">Login</button>
                     </div>
                     <div class="col-6 text-right">
-                      <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                      <button type="button" class="btn btn-link px-0" data-toggle="modal" data-target="#modalResetPassword">Forgot password?</button>
                     </div>
                   </div>
                 </form>
@@ -41,4 +41,36 @@
       </div>
     </div>
   </main>
+</div>
+
+<div class="modal" id="modalResetPassword">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header alert-success">
+              <h4 class="modal-title">Forgot password</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body" >
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <form class="row form">
+                              <div class="col-md-12">
+                                  <div class="form-group"> 
+                                    <p>We have reset your password and send to your mail! Please check your mail </p>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Closed</button>
+          </div>
+      </div>
+  </div>
 </div>

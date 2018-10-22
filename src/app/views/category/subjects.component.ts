@@ -23,7 +23,8 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   CheckResq : CheckResquest;
   errorms : any ="";
   @ViewChild(DataTableDirective)
-  dtElement: DataTableDirective;
+  // dtElement: DataTableDirective;
+  datatableElement: DataTableDirective;
   monhocList: any = [];
   dtOptions: any = {};
   data : any;
@@ -62,10 +63,39 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       this.dtTrigger.next();
     });
   }
+  selectedSub: any;
+  i;
+  filterBySubName(subname): void {
+    this.selectedSub = subname;
+    // console.log(this.selectedSub)
+    this.i = this.selectedSub.split(":");
+    // console.log("this.i[1]: "+this.i[1])
+    $.fn['dataTable'].ext.search.push((settings, data, dataIndex) => {
+      const name = data[2].toString(); // use data for the id column
+    // console.log("selec: "+this.selectedSub)
+          if(this.i[0] == 0){
+            // console.log(name+" "+this.selectedSub);
+          dataIndex = this.monhocList;
+          return true;
+        } 
+      if(this.i[1].trim() == name){
+      // console.log(this.monhocList.find(x => x.ten == name));
+      // console.log(this.monhocList.filter(x => x.ten == name))[0];
+      dataIndex = this.monhocList.find(x => x.ten == name);
+      // console.log(dataIndex)
+        return true;
+      } 
+    });
+    // this.dtOptions['drawCallback']
+    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.draw();
+    });
+  }
 
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
+    $.fn['dataTable'].ext.search.pop();
   }
   GetAll(){
     this.myservicesService.getAll().subscribe(res => 

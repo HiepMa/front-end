@@ -1,3 +1,4 @@
+<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -8,6 +9,13 @@
                 <button class="btn btn-success float-right" data-toggle="modal" data-target="#modalAdd">Add New Subject</button>
             </div>
             <div class="card-body">
+                <div class="form-group row">
+                    <p for="type" class="col-md-2" style="padding: 6px 12px; text-align: center;">Subject:</p>
+                    <select class="form-control col-md-6" id="type" [ngModel]="selectedSub" (change)="filterBySubName($event.target.value)">
+                        <option [ngValue]="all" selected>All</option>
+                        <option *ngFor = "let monHoc of monhocList" [ngValue]="monHoc.ten">{{monHoc.ten}}</option>
+                    </select>
+                </div>
                 <table datatable #dataTable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped row-border hover">
                     <thead>
                         <tr>
@@ -43,7 +51,6 @@
     
     <!--Modal Add-->
     <!-- The Modal -->
-    <ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
     <form [formGroup]="form">
     <div class="modal" id="modalAdd">
         <div class="modal-dialog modal-lg">
@@ -85,6 +92,7 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" (click)="Add()" [disabled]="!form.valid" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -121,7 +129,6 @@
                                             <input class="form-control" type="text" name="subname" id="subname1" placeholder="Subject Name" value='{{ten}}' [(ngModel)]="updatesub.name" [formControl]="form1.controls['name']">
                                         </div>
                                         <p *ngIf="form1.controls['name'].hasError('required') && form1.controls['name'].touched" class="text-danger" >Name is required</p>
-                                        
                                     </div>
                                 </form>
                             </div>
@@ -131,6 +138,7 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(subcode)" [disabled]="!form1.valid" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>

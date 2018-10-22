@@ -1,3 +1,4 @@
+<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
@@ -24,14 +25,14 @@
                         <td>{{part.monHoc.ten}}</td>
                         <td>
                             <label class="switch switch-label switch-pill switch-success">
-                                <input type="checkbox" class="switch-input" [checked]="part.hienThi == true" #hthi (change)="Changed(part.id,i, $event)">
+                                <input type="checkbox" class="switch-input" [checked]="part.hienThi == true" #hthi (change)="Changed(i, $event)">
                                 <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
                             </label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)= "Value(part.id,i)"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger active" data-toggle="modal" data-target="#modalDelete" (click)= "Value(i)"><i class="fas fa-trash-alt"></i></button>
                             &nbsp;
-                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(part.id,i)"><i class="fas fa-pencil-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-primary active" data-toggle="modal" data-target="#modalUpdate" (click)="Value(i)"><i class="fas fa-pencil-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -42,7 +43,6 @@
 
 <!--Modal Add-->
 <!-- The Modal -->
-<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
 <form [formGroup]="form">
 <div class="modal" id="modalAdd">
     <div class="modal-dialog modal-lg">
@@ -76,10 +76,11 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="type">Subject:</label>
-                                        <select class="form-control" id="type" #partSub>
-                                            <option *ngFor = "let monHoc of monhocList" value={{monHoc.id}}>{{monHoc.ten}}</option>
+                                        <select class="form-control" id="type" name="ps" [(ngModel)]="newp.partsub">
+                                            <option *ngFor = "let monHoc of monhocList" [ngValue]="monHoc.id">{{monHoc.ten}}</option>
                                         </select>
                                     </div>
+                                    <p *ngIf="form.controls['partsub'].touched" class="text-danger" >Subject is required</p>
                                 </div>
                             </form>
                         </div>
@@ -88,7 +89,8 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="Add(partSub)" [disabled]="!form.valid" >Save</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="Add()" [disabled]="!form.valid" >Save</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -96,7 +98,6 @@
     </form>
 <!--Modal Add-->
 <!-- The Modal -->
-<ngx-loading-bar [includeSpinner]='false'></ngx-loading-bar>
 <form [formGroup]="form1">
 <div class="modal" id="modalUpdate">
     <div class="modal-dialog modal-lg">
@@ -128,8 +129,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="type">Subject:</label>
-                                        <select class="form-control" id="type" #partSube>
-                                            <option *ngFor="let monHoc of monhocList" value={{monHoc.id}} [selected]="monHoc.id==id_mh" >{{monHoc.ten}}</option>
+                                        <select class="form-control" id="type" value={{tenmh}} name="pss" [(ngModel)]="updatep.partsub">
+                                            <option *ngFor = "let monHoc of monhocList" [ngValue]="monHoc.id">{{monHoc.ten}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -140,7 +141,8 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(partCodee,partSube)" [disabled]="!form1.valid" >Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Update(partCodee)" [disabled]="!form1.valid" >Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
